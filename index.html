@@ -37,7 +37,6 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      padding-bottom: 72px;
       min-height: 100vh;
     }
 
@@ -49,7 +48,6 @@
       background: var(--bg);
       padding: 16px 20px 10px;
       text-align: center;
-      backdrop-filter: blur(8px);
     }
     .app-header h1 {
       font-family: 'Noto Serif SC', serif;
@@ -65,118 +63,86 @@
       margin-top: 2px;
     }
 
-    /* ===== SECTION LABEL ===== */
-    .section-title {
+    /* ===== CATEGORY TAB BAR ===== */
+    .cat-bar {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 20px 20px 14px;
+      justify-content: center;
+      gap: 4px;
+      padding: 8px 16px 0;
+      background: var(--bg);
+      position: sticky;
+      top: 70px;
+      z-index: 49;
+    }
+    .cat-item {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--tab-inactive);
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .cat-item.active {
+      color: #fff;
+      background: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ===== PAGE CONTAINER ===== */
+    .page {
+      display: none;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 16px 40px;
+    }
+    .page.active { display: block; }
+
+    /* ===== CASE LIST (for category page) ===== */
+    .case-list {
+      padding-top: 20px;
+    }
+    .section-label {
       font-family: 'Noto Serif SC', serif;
       font-size: 18px;
       font-weight: 600;
       color: var(--text);
-    }
-    .section-title::before {
-      content: '';
-      display: inline-block;
-      width: 3px;
-      height: 18px;
-      background: var(--accent);
-      border-radius: 2px;
-      flex-shrink: 0;
+      padding-left: 2px;
+      margin-bottom: 14px;
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
     }
 
-    /* ===== TIMELINE ===== */
-    .timeline {
-      padding: 0 20px 10px;
-      position: relative;
-    }
-
-    /* 中间竖线 */
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 36px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--line);
-    }
-
-    .step {
-      position: relative;
-      padding-left: 56px;
-      padding-bottom: 32px;
-      animation: fadeUp 0.6s ease both;
-    }
-    .step:last-child { padding-bottom: 8px; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 时间线圆点 */
-    .step-dot {
-      position: absolute;
-      left: 28px;
-      top: 6px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 3px solid var(--accent);
-      background: var(--bg);
-      z-index: 2;
-      transform: translateX(-50%);
-    }
-    .step-dot.completed {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-    .step-dot.final {
-      background: var(--accent-lt);
-      border-color: var(--accent-lt);
-      box-shadow: 0 0 0 4px rgba(184,134,11,0.15);
-    }
-
-    /* 步骤编号 */
-    .step-number {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 6px;
-      letter-spacing: 1px;
-    }
-
-    /* ===== STEP CARD ===== */
-    .step-card {
+    .case-card {
       background: var(--card-bg);
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 2px 12px var(--shadow);
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
     }
+    .case-card:active { transform: scale(0.98); }
 
-    .step-card img {
+    .case-card-img {
       display: block;
       width: 100%;
-      height: auto;
-      aspect-ratio: 3/4;
+      height: 200px;
       object-fit: cover;
       background: #e8e2da;
     }
-
-    .step-info {
+    .case-card-body {
       padding: 14px 16px 16px;
     }
-    .step-info h3 {
+    .case-card-body h3 {
       font-family: 'Noto Serif SC', serif;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 600;
-      color: var(--text);
-      margin-bottom: 4px;
     }
-    .step-info .step-tag {
+    .case-card-body .case-tag {
       display: inline-block;
       font-size: 11px;
       font-weight: 500;
@@ -186,109 +152,164 @@
       border-radius: 10px;
       margin-bottom: 6px;
     }
+    .case-card-body p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+
+    /* ===== CASE DETAIL (back button) ===== */
+    .detail-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 0 8px;
+    }
+    .back-btn {
+      font-size: 14px;
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: 500;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      padding: 4px 0;
+    }
+    .back-btn::before { content: "\2190\00a0"; }
+    .detail-header h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding-top: 10px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .step {
+      position: relative;
+      padding-left: 44px;
+      padding-bottom: 28px;
+      animation: fadeUp 0.5s ease both;
+    }
+    .step:last-child { padding-bottom: 4px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-dot {
+      position: absolute;
+      left: 16px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      background: var(--bg);
+      z-index: 2;
+      transform: translateX(-50%);
+    }
+    .step-dot.completed { background: var(--accent); }
+    .step-dot.final {
+      background: var(--accent-lt);
+      border-color: var(--accent-lt);
+      box-shadow: 0 0 0 4px rgba(184,134,11,0.15);
+    }
+
+    .step-number {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    /* ===== CARD ===== */
+    .step-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+    .step-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 600/780;
+      object-fit: cover;
+      background: #e8e2da;
+    }
+    .step-info {
+      padding: 12px 14px 14px;
+    }
+    .step-info .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--tag-bg);
+      padding: 2px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+    }
+    .step-info h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
     .step-info p {
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.7;
     }
 
-    /* 步骤间的连接过渡文字 */
+    /* 步骤间的过渡文字 — 居中显示 */
     .step-transition {
-      position: relative;
-      padding-left: 56px;
-      padding: 6px 0 6px 56px;
+      text-align: center;
+      padding: 4px 0 6px 44px;
       font-size: 12px;
       color: var(--text-muted);
       letter-spacing: 0.5px;
     }
     .step-transition .arrow {
       color: var(--accent);
-      margin: 0 4px;
+      margin-right: 4px;
     }
 
-    /* ===== BOTTOM TAB NAV ===== */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: var(--nav-bg);
-      border-top: 1px solid var(--nav-border);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      z-index: 100;
-      padding-bottom: env(safe-area-inset-bottom, 0);
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 11px;
-      color: var(--tab-inactive);
-      cursor: pointer;
-      transition: color 0.2s;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-      flex: 1;
-      padding: 6px 0;
-    }
-    .nav-item .nav-icon {
-      font-size: 22px;
-      line-height: 1;
-    }
-    .nav-item.active {
-      color: var(--tab-active);
-      font-weight: 600;
-    }
-
-    /* ===== EMPTY STATE FOR OTHER TABS ===== */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    .placeholder-tab {
+    /* ===== PLACEHOLDER ===== */
+    .placeholder {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 80px 40px;
+      padding: 60px 20px;
       text-align: center;
     }
-    .placeholder-tab .icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-      opacity: 0.5;
-    }
-    .placeholder-tab h2 {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .placeholder-tab p {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
+    .placeholder .icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+    .placeholder h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+    .placeholder p  { font-size: 14px; color: var(--text-muted); }
 
     /* ===== RESPONSIVE ===== */
-    @media (min-width: 480px) {
-      .timeline { max-width: 460px; margin:0 auto; }
-    }
     @media (min-width: 768px) {
-      .timeline {
-        max-width: 580px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-      .timeline::before { display: none; }
-      .step { padding-left: 0; }
-      .step-dot { display: none; }
-      .step-number { text-align: center; }
-      .app-header h1 { font-size: 28px; }
+      .page { max-width: 640px; }
+      .case-card { display: flex; height: auto; }
+      .case-card-img { width: 260px; height: 180px; flex-shrink: 0; }
+      .case-card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
     }
   </style>
 </head>
@@ -300,12 +321,92 @@
     <p>用 AI 让记忆重生</p>
   </header>
 
-  <!-- ===== TAB: 老照片修复 ===== -->
-  <div class="tab-content active" id="tab-photo">
+  <!-- ===== CATEGORY TABS ===== -->
+  <div class="cat-bar">
+    <div class="cat-item active" data-page="cat-photo">老照片修复</div>
+    <div class="cat-item" data-page="cat-paint">AI 绘画</div>
+    <div class="cat-item" data-page="cat-poem">诗词创作</div>
+    <div class="cat-item" data-page="cat-about">关于</div>
+  </div>
 
-    <div class="section-title">老照片修复</div>
+  <!-- ================================================================ -->
+  <!-- PAGE: 老照片修复 — 案例列表                                        -->
+  <!-- ================================================================ -->
+  <div class="page active" id="page-cat-photo">
+    <div class="case-list">
+      <div class="section-label">修复案例</div>
 
-    <!-- 时间线 -->
+      <!-- 案例一 -->
+      <div class="case-card" onclick="openCase('case-1')">
+        <img class="case-card-img" src="images/photo_1.4.jpg" alt="老照片修复案例一">
+        <div class="case-card-body">
+          <span class="case-tag">老照片修复</span>
+          <h3>案例一：黑白老照片的全流程修复</h3>
+          <p>从原始泛黄破损到现代写真风格，4 步看 AI 如何让老照片重获新生。</p>
+        </div>
+      </div>
+
+      <!-- 案例二 — 占位 -->
+      <div class="case-card" style="opacity:0.5; cursor:default;">
+        <div class="case-card-body" style="padding:40px 20px; text-align:center;">
+          <h3 style="color:var(--text-muted);">案例二</h3>
+          <p style="margin-top:4px;">即将上线，敬请期待</p>
+        </div>
+      </div>
+
+      <!-- 案例三 — 占位 -->
+      <div class="case-card" style="opacity:0.5; cursor:default;">
+        <div class="case-card-body" style="padding:40px 20px; text-align:center;">
+          <h3 style="color:var(--text-muted);">案例三</h3>
+          <p style="margin-top:4px;">即将上线，敬请期待</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PAGE: AI 绘画（占位）                                              -->
+  <!-- ================================================================ -->
+  <div class="page" id="page-cat-paint">
+    <div class="placeholder">
+      <div class="icon">🎨</div>
+      <h2>AI 绘画</h2>
+      <p>即将上线，敬请期待</p>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PAGE: 诗词创作（占位）                                            -->
+  <!-- ================================================================ -->
+  <div class="page" id="page-cat-poem">
+    <div class="placeholder">
+      <div class="icon">📜</div>
+      <h2>诗词创作</h2>
+      <p>即将上线，敬请期待</p>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- PAGE: 关于（占位）                                                -->
+  <!-- ================================================================ -->
+  <div class="page" id="page-cat-about">
+    <div class="placeholder">
+      <div class="icon">✨</div>
+      <h2>关于乐活 AI</h2>
+      <p>用 AI 技术让老照片、旧记忆重获新生，探索 AI 创作的无限可能。</p>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- CASE DETAIL: 案例一                                                -->
+  <!-- ================================================================ -->
+  <div class="page" id="page-case-1">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeCase()">返回</span>
+      <h2>案例一</h2>
+    </div>
+
     <div class="timeline">
 
       <!-- Step 1.1 -->
@@ -315,7 +416,7 @@
         <div class="step-card">
           <img src="images/photo_1.1.jpg" alt="照片修复 1.1 — 原始老照片" loading="lazy">
           <div class="step-info">
-            <span class="step-tag">原始底片</span>
+            <span class="tag">原始底片</span>
             <h3>照片修复 1.1</h3>
             <p>泛黄、褪色、布满裂纹的原始老照片，岁月的痕迹清晰可见。</p>
           </div>
@@ -333,7 +434,7 @@
         <div class="step-card">
           <img src="images/photo_1.2.jpg" alt="照片修复 1.2 — 修复黑白版" loading="lazy">
           <div class="step-info">
-            <span class="step-tag">修复还原</span>
+            <span class="tag">修复还原</span>
             <h3>照片修复 1.2</h3>
             <p>AI 去除裂纹与污渍，还原清晰的黑白影像，人物轮廓更加分明。</p>
           </div>
@@ -351,7 +452,7 @@
         <div class="step-card">
           <img src="images/photo_1.3.jpg" alt="照片修复 1.3 — 修复上色版" loading="lazy">
           <div class="step-info">
-            <span class="step-tag">色彩重生</span>
+            <span class="tag">色彩重生</span>
             <h3>照片修复 1.3</h3>
             <p>AI 为黑白照片赋予色彩——温暖肤色、青蓝衣衫，旧时光有了温度。</p>
           </div>
@@ -369,7 +470,7 @@
         <div class="step-card">
           <img src="images/photo_1.4.jpg" alt="照片修复 1.4 — 现代写真版" loading="lazy">
           <div class="step-info">
-            <span class="step-tag">写真焕新</span>
+            <span class="tag">写真焕新</span>
             <h3>照片修复 1.4</h3>
             <p>现代写真风格重塑——高清画质、精致妆造，老照片里的人焕然一新。</p>
           </div>
@@ -377,77 +478,45 @@
       </div>
 
     </div><!-- /timeline -->
-  </div><!-- /tab-photo -->
-
-  <!-- ===== TAB: AI 绘画（占位） ===== -->
-  <div class="tab-content" id="tab-paint">
-    <div class="placeholder-tab">
-      <div class="icon">🎨</div>
-      <h2>AI 绘画</h2>
-      <p>即将上线，敬请期待</p>
-    </div>
-  </div>
-
-  <!-- ===== TAB: 诗词创作（占位） ===== -->
-  <div class="tab-content" id="tab-poem">
-    <div class="placeholder-tab">
-      <div class="icon">📜</div>
-      <h2>诗词创作</h2>
-      <p>即将上线，敬请期待</p>
-    </div>
-  </div>
-
-  <!-- ===== TAB: 关于（占位） ===== -->
-  <div class="tab-content" id="tab-about">
-    <div class="placeholder-tab">
-      <div class="icon">✨</div>
-      <h2>关于乐活 AI</h2>
-      <p>用 AI 技术让老照片、旧记忆重获新生，探索 AI 创作的无限可能。</p>
-    </div>
-  </div>
-
-  <!-- ===== BOTTOM NAV ===== -->
-  <nav class="bottom-nav">
-    <div class="nav-item active" data-tab="tab-photo">
-      <span class="nav-icon">📷</span>
-      <span>老照片修复</span>
-    </div>
-    <div class="nav-item" data-tab="tab-paint">
-      <span class="nav-icon">🎨</span>
-      <span>AI 绘画</span>
-    </div>
-    <div class="nav-item" data-tab="tab-poem">
-      <span class="nav-icon">📜</span>
-      <span>诗词创作</span>
-    </div>
-    <div class="nav-item" data-tab="tab-about">
-      <span class="nav-icon">✨</span>
-      <span>关于</span>
-    </div>
-  </nav>
+  </div><!-- /page-case-1 -->
 
   <script>
-    // Tab 切换
-    const tabs = document.querySelectorAll('.nav-item');
-    const contents = {
-      'tab-photo': document.getElementById('tab-photo'),
-      'tab-paint': document.getElementById('tab-paint'),
-      'tab-poem':  document.getElementById('tab-poem'),
-      'tab-about': document.getElementById('tab-about')
-    };
+    // ===== 分类 Tab 切换 =====
+    const catItems = document.querySelectorAll('.cat-item');
+    const pages = {};
+    document.querySelectorAll('.page').forEach(p => { pages[p.id] = p; });
 
-    tabs.forEach(item => {
+    catItems.forEach(item => {
       item.addEventListener('click', function() {
-        tabs.forEach(t => t.classList.remove('active'));
+        catItems.forEach(t => t.classList.remove('active'));
         this.classList.add('active');
-        const id = this.dataset.tab;
-        Object.values(contents).forEach(c => c.classList.remove('active'));
-        if (contents[id]) contents[id].classList.add('active');
+        const id = this.dataset.page;
+        Object.values(pages).forEach(p => p.classList.remove('active'));
+        if (pages[id]) pages[id].classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
 
-    // 逐步动画 — 进入视口时触发
+    // ===== 打开/关闭案例详情 =====
+    function openCase(id) {
+      catItems.forEach(t => t.classList.remove('active'));
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      if (pages['page-' + id]) pages['page-' + id].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeCase() {
+      // 回到当前分类
+      catItems.forEach(t => t.classList.remove('active'));
+      if (document.querySelector('.cat-item[data-page="cat-photo"]')) {
+        document.querySelector('.cat-item[data-page="cat-photo"]').classList.add('active');
+      }
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      if (pages['cat-photo']) pages['cat-photo'].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ===== 滚动动画 =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
