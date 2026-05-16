@@ -358,13 +358,145 @@
   </div>
 
   <!-- ================================================================ -->
-  <!-- PAGE: AI 文字卡片（占位）                                        -->
+  <!-- PAGE: AI 文字卡片 — 卡片作品展示                                  -->
   <!-- ================================================================ -->
   <div class="page" id="page-cat-card">
-    <div class="placeholder">
-      <div class="icon">🃏</div>
-      <h2>AI 文字卡片</h2>
-      <p>即将上线，敬请期待</p>
+    <div class="case-list">
+      <div class="section-label">AI 文字卡片</div>
+
+      <!-- 卡片 1：稳步而行（绛红金线风） -->
+      <div class="case-card" onclick="openCase('card-1')">
+        <img class="case-card-img" src="images/card_1.png" alt="稳步而行">
+        <div class="case-card-body">
+          <span class="case-tag">绛红金线</span>
+          <h3>稳步而行</h3>
+          <p>花开有早晚，行路有快慢。稳住脚步慢慢走，行得安稳。</p>
+        </div>
+      </div>
+
+      <!-- 卡片 2：穿上铠甲去战斗（绿金国潮风） -->
+      <div class="case-card" onclick="openCase('card-2')">
+        <img class="case-card-img" src="images/card_2.png" alt="穿上铠甲去战斗">
+        <div class="case-card-body">
+          <span class="case-tag">绿金国潮</span>
+          <h3>穿上铠甲去战斗</h3>
+          <p>早上出门前，记得对自己说一声：我是最棒的。然后穿上铠甲，出门战斗厮杀吧。</p>
+        </div>
+      </div>
+
+      <!-- 卡片 3：改变自己（水墨意境风） -->
+      <div class="case-card" onclick="openCase('card-3')">
+        <img class="case-card-img" src="images/card_3.png" alt="改变自己">
+        <div class="case-card-body">
+          <span class="case-tag">水墨意境</span>
+          <h3>改变自己</h3>
+          <p>不要活在别人眼中，更不要活在别人嘴中。你能做到的，只有改变你自己。</p>
+        </div>
+      </div>
+
+      <!-- 卡片 4：放下攀比，去看世界（绿金国潮风） -->
+      <div class="case-card" onclick="openCase('card-4')">
+        <img class="case-card-img" src="images/card_4.jpg" alt="放下攀比，去看世界">
+        <div class="case-card-body">
+          <span class="case-tag">绿金国潮</span>
+          <h3>放下攀比，去看世界</h3>
+          <p>尺有所短寸有所长，不去事事都攀比。心态顺畅身体好，省下药钱旅游去。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- CASE DETAIL: 卡片 1 - 稳步而行                                     -->
+  <!-- ================================================================ -->
+  <div class="page" id="page-card-1">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeCard()">返回</span>
+      <h2>稳步而行</h2>
+    </div>
+    <div class="process-gallery">
+      <div class="process-item" style="animation-delay:0.05s">
+        <div class="process-label is-first">绛红金线 · 稳步而行</div>
+        <div class="step-card">
+          <img src="images/card_1.png" alt="稳步而行" loading="lazy">
+          <div class="step-info">
+            <span class="tag">绛红金线风</span>
+            <h3>稳步而行</h3>
+            <p>花开有早晚<br>行路有快慢<br>稳住脚步慢慢走<br>才不会半路跌倒<br>沉下心慢慢来<br>才能走得长久<br>行得安稳</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- CASE DETAIL: 卡片 2 - 穿上铠甲去战斗                                -->
+  <!-- ================================================================ -->
+  <div class="page" id="page-card-2">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeCard()">返回</span>
+      <h2>穿上铠甲去战斗</h2>
+    </div>
+    <div class="process-gallery">
+      <div class="process-item" style="animation-delay:0.05s">
+        <div class="process-label is-first">绿金国潮 · 穿上铠甲去战斗</div>
+        <div class="step-card">
+          <img src="images/card_2.png" alt="穿上铠甲去战斗" loading="lazy">
+          <div class="step-info">
+            <span class="tag">绿金国潮风</span>
+            <h3>穿上铠甲去战斗</h3>
+            <p>无论是上班或上学<br>早上出门前<br>记得对自己说一声<br>我是最棒的<br>然后穿上铠甲<br>出门战斗厮杀吧</p>
+            <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">—— 朱德庸</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- CASE DETAIL: 卡片 3 - 改变自己                                     -->
+  <!-- ================================================================ -->
+  <div class="page" id="page-card-3">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeCard()">返回</span>
+      <h2>改变自己</h2>
+    </div>
+    <div class="process-gallery">
+      <div class="process-item" style="animation-delay:0.05s">
+        <div class="process-label is-first">水墨意境 · 改变自己</div>
+        <div class="step-card">
+          <img src="images/card_3.png" alt="改变自己" loading="lazy">
+          <div class="step-info">
+            <span class="tag">水墨意境风</span>
+            <h3>改变自己</h3>
+            <p>不要活在别人眼中<br>更不要活在别人嘴中<br>世界不会因为你的抱怨不满<br>而为你改变<br>你能做到的<br>只有改变你自己</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- CASE DETAIL: 卡片 4 - 放下攀比，去看世界                            -->
+  <!-- ================================================================ -->
+  <div class="page" id="page-card-4">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeCard()">返回</span>
+      <h2>放下攀比，去看世界</h2>
+    </div>
+    <div class="process-gallery">
+      <div class="process-item" style="animation-delay:0.05s">
+        <div class="process-label is-first">绿金国潮 · 放下攀比，去看世界</div>
+        <div class="step-card">
+          <img src="images/card_4.jpg" alt="放下攀比，去看世界" loading="lazy">
+          <div class="step-info">
+            <span class="tag">绿金国潮风</span>
+            <h3>放下攀比，去看世界</h3>
+            <p>尺有所短寸有所长<br>不去事事都攀比<br>人间美景未看全<br>哪有工夫生闲气<br>心态顺畅身体好<br>省下药钱旅游去</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -505,6 +637,16 @@
       if (photoTab) photoTab.classList.add('active');
       Object.values(pages).forEach(p => p.classList.remove('active'));
       if (pages['page-cat-photo']) pages['page-cat-photo'].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ===== 打开/关闭卡片详情 =====
+    function closeCard() {
+      catItems.forEach(t => t.classList.remove('active'));
+      const cardTab = document.querySelector('.cat-item[data-page="cat-card"]');
+      if (cardTab) cardTab.classList.add('active');
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      if (pages['page-cat-card']) pages['page-cat-card'].classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
