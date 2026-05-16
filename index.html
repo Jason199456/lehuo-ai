@@ -64,31 +64,44 @@
     }
 
     /* ===== CATEGORY TAB BAR ===== */
+    .cat-bar-wrap {
+      position: sticky;
+      top: 68px;
+      z-index: 49;
+      background: var(--bg);
+      padding: 10px 16px 14px;
+    }
     .cat-bar {
       display: flex;
       justify-content: center;
-      gap: 4px;
-      padding: 8px 16px 0;
-      background: var(--bg);
-      position: sticky;
-      top: 70px;
-      z-index: 49;
+      gap: 2px;
+      background: #fff;
+      border-radius: 28px;
+      padding: 4px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06), 0 0 0 1px rgba(184,134,11,0.08);
+      max-width: 480px;
+      margin: 0 auto;
     }
     .cat-item {
-      font-size: 14px;
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
       font-weight: 500;
       color: var(--tab-inactive);
-      padding: 6px 16px;
-      border-radius: 20px;
+      padding: 8px 6px;
+      border-radius: 24px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
+      letter-spacing: 0.5px;
+      position: relative;
     }
     .cat-item.active {
       color: #fff;
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-lt));
       font-weight: 600;
+      box-shadow: 0 2px 8px rgba(184,134,11,0.25);
     }
 
     /* ===== PAGE CONTAINER ===== */
@@ -132,6 +145,7 @@
       width: 100%;
       height: 200px;
       object-fit: cover;
+      object-position: center top;
       background: #e8e2da;
     }
     .case-card-body {
@@ -308,8 +322,12 @@
     @media (min-width: 768px) {
       .page { max-width: 640px; }
       .case-card { display: flex; height: auto; }
-      .case-card-img { width: 260px; height: 180px; flex-shrink: 0; }
+      .case-card-img { width: 260px; height: 180px; flex-shrink: 0; object-position: center top; }
       .case-card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+      .step-transition { padding: 4px 0 6px; }
+      .timeline::before { left: 50%; margin-left: -1px; }
+      .step { padding-left: 0; max-width: 520px; margin: 0 auto; }
+      .step-dot { left: 50%; }
     }
   </style>
 </head>
@@ -322,11 +340,13 @@
   </header>
 
   <!-- ===== CATEGORY TABS ===== -->
-  <div class="cat-bar">
-    <div class="cat-item active" data-page="cat-photo">老照片修复</div>
-    <div class="cat-item" data-page="cat-paint">AI 绘画</div>
-    <div class="cat-item" data-page="cat-poem">诗词创作</div>
-    <div class="cat-item" data-page="cat-about">关于</div>
+  <div class="cat-bar-wrap">
+    <div class="cat-bar">
+      <div class="cat-item active" data-page="cat-photo">老照片修复</div>
+      <div class="cat-item" data-page="cat-paint">AI 绘画</div>
+      <div class="cat-item" data-page="cat-poem">诗词创作</div>
+      <div class="cat-item" data-page="cat-about">关于</div>
+    </div>
   </div>
 
   <!-- ================================================================ -->
@@ -490,7 +510,7 @@
       item.addEventListener('click', function() {
         catItems.forEach(t => t.classList.remove('active'));
         this.classList.add('active');
-        const id = this.dataset.page;
+        const id = 'page-' + this.dataset.page;
         Object.values(pages).forEach(p => p.classList.remove('active'));
         if (pages[id]) pages[id].classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -512,7 +532,7 @@
         document.querySelector('.cat-item[data-page="cat-photo"]').classList.add('active');
       }
       Object.values(pages).forEach(p => p.classList.remove('active'));
-      if (pages['cat-photo']) pages['cat-photo'].classList.add('active');
+      if (pages['page-cat-photo']) pages['page-cat-photo'].classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
