@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== RESET & BASE ===== */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
     :root {
@@ -18,18 +17,11 @@
       --accent:     #b8860b;
       --accent-lt:  #d4a843;
       --shadow:     rgba(0,0,0,0.06);
-      --nav-bg:     #ffffff;
-      --nav-border: #e8e2da;
-      --tab-active: #b8860b;
-      --tab-inactive:#3a8a7c;
       --tag-bg:     #f0ebe4;
+      --tab-inactive:#3a8a7c;
     }
 
-    html {
-      font-size: 16px;
-      -webkit-text-size-adjust: 100%;
-      scroll-behavior: smooth;
-    }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
     body {
       font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -37,38 +29,34 @@
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+      /* 留出固定头部+导航栏的空间 */
+      padding-top: 108px;
     }
 
-    /* ===== HEADER ===== */
+    /* ===== 固定头部 ===== */
     .app-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
       background: var(--bg);
-      padding: 16px 20px 10px;
+      padding: 12px 20px 6px;
       text-align: center;
     }
     .app-header h1 {
       font-family: 'Noto Serif SC', serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 4px;
+      font-size: 22px; font-weight: 700;
+      color: var(--accent); letter-spacing: 4px;
     }
     .app-header p {
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 2px;
-      margin-top: 2px;
+      font-size: 11px; color: var(--text-muted);
+      letter-spacing: 2px; margin-top: 1px;
     }
 
-    /* ===== CATEGORY TAB BAR ===== */
+    /* ===== 固定导航栏 ===== */
     .cat-bar-wrap {
-      position: sticky;
-      top: 68px;
-      z-index: 49;
+      position: fixed; top: 54px; left: 0; right: 0;
+      z-index: 99;
       background: var(--bg);
-      padding: 10px 16px 14px;
+      padding: 6px 12px 10px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -86,7 +74,7 @@
     .cat-item {
       flex: 1;
       text-align: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--tab-inactive);
       padding: 8px 4px;
@@ -105,21 +93,15 @@
       box-shadow: 0 2px 8px rgba(184,134,11,0.25);
     }
 
-    /* ===== PAGE CONTAINER ===== */
-    .page {
-      display: none;
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 0 16px 40px;
-    }
+    /* ===== 页面容器 ===== */
+    .page { display: none; max-width: 640px; margin: 0 auto; padding: 0 16px 60px; }
     .page.active { display: block; }
 
-    /* ===== CASE LIST ===== */
+    /* ===== 分类 / 卡片列表 ===== */
     .case-list { padding-top: 20px; }
     .section-label {
       font-family: 'Noto Serif SC', serif;
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 18px; font-weight: 600;
       color: var(--text);
       margin-bottom: 14px;
       border-left: 3px solid var(--accent);
@@ -131,76 +113,62 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 2px 12px var(--shadow);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       cursor: pointer;
       transition: transform 0.15s;
       -webkit-tap-highlight-color: transparent;
     }
-    .case-card:active { transform: scale(0.98); }
+    .case-card:active { transform: scale(0.97); }
 
+    /* 列表缩略图 — 只显示上部主要内容区域 */
     .case-card-img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 180px;
+      object-fit: cover;
+      object-position: center 15%;
       background: #e8e2da;
     }
-    .case-card-body { padding: 14px 16px 16px; }
+    .case-card-body { padding: 12px 14px 14px; }
     .case-card-body h3 {
       font-family: 'Noto Serif SC', serif;
-      font-size: 17px;
-      font-weight: 600;
+      font-size: 16px; font-weight: 600;
     }
     .case-card-body .case-tag {
       display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 11px; font-weight: 500;
       color: var(--accent);
       background: var(--tag-bg);
       padding: 2px 10px;
       border-radius: 10px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .case-card-body p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-      line-height: 1.6;
+      font-size: 13px; color: var(--text-muted);
+      margin-top: 3px; line-height: 1.6;
     }
 
-    /* ===== DETAIL HEADER ===== */
+    /* ===== 详情页头部 ===== */
     .detail-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 0 20px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 16px 0 16px;
     }
     .back-btn {
-      font-size: 14px;
-      color: var(--accent);
-      cursor: pointer;
-      font-weight: 500;
+      font-size: 14px; color: var(--accent);
+      cursor: pointer; font-weight: 500;
       -webkit-tap-highlight-color: transparent;
-      user-select: none;
-      padding: 4px 0;
+      user-select: none; padding: 4px 0;
     }
     .back-btn::before { content: "\2190\00a0"; }
     .detail-header h2 {
       font-family: 'Noto Serif SC', serif;
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 17px; font-weight: 600;
       color: var(--text);
     }
 
-    /* ===== PROCESS GALLERY (replaces timeline) ===== */
-    .process-gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .process-item {
-      animation: fadeUp 0.5s ease both;
-    }
+    /* ===== Process Gallery ===== */
+    .process-gallery { display: flex; flex-direction: column; gap: 24px; }
+    .process-item { animation: fadeUp 0.5s ease both; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -209,32 +177,19 @@
 
     .process-label {
       font-family: 'Noto Serif SC', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--accent);
-      text-align: center;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-      padding: 6px 0;
+      font-size: 15px; font-weight: 600;
+      color: var(--accent); text-align: center;
+      margin-bottom: 10px; letter-spacing: 1px; padding: 6px 0;
       position: relative;
     }
     .process-label::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: var(--accent-lt);
-      margin: 8px auto 0;
-      opacity: 0.4;
+      content: ''; display: block; width: 36px; height: 2px;
+      background: var(--accent-lt); margin: 6px auto 0; opacity: 0.4;
     }
-
-    .process-label.is-first {
-      font-size: 16px;
-      color: var(--text);
-    }
+    .process-label.is-first { font-size: 16px; color: var(--text); }
     .process-label.is-first::after { width: 28px; }
 
-    /* ===== CARD ===== */
+    /* ===== 卡片（详情页完整尺寸） ===== */
     .step-card {
       background: var(--card-bg);
       border-radius: 12px;
@@ -242,70 +197,125 @@
       box-shadow: 0 2px 12px var(--shadow);
     }
     .step-card img {
-      display: block;
-      width: 100%;
-      height: auto;
+      display: block; width: 100%; height: auto;
       background: #e8e2da;
     }
-    .step-info {
-      padding: 12px 16px 16px;
-    }
+    .step-info { padding: 12px 14px 14px; }
     .step-info .tag {
       display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--accent);
-      background: var(--tag-bg);
-      padding: 2px 10px;
-      border-radius: 10px;
-      margin-bottom: 4px;
+      font-size: 11px; font-weight: 500;
+      color: var(--accent); background: var(--tag-bg);
+      padding: 2px 10px; border-radius: 10px; margin-bottom: 4px;
     }
     .step-info h3 {
       font-family: 'Noto Serif SC', serif;
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 2px;
+      font-size: 15px; font-weight: 600; margin-bottom: 2px;
     }
     .step-info p {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.7;
+      font-size: 13px; color: var(--text-muted); line-height: 1.7;
     }
 
-    /* ===== PLACEHOLDER ===== */
-    .placeholder {
+    /* ===== 风格分类卡片（AI文字卡片列表页用） ===== */
+    .style-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px var(--shadow);
+      margin-bottom: 14px;
+      cursor: pointer;
+      transition: transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .style-card:active { transform: scale(0.97); }
+    .style-card-inner {
+      padding: 18px 18px 16px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .style-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 60px 20px;
-      text-align: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .style-card-info { flex: 1; }
+    .style-card-info h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 16px; font-weight: 600;
+    }
+    .style-card-info .style-desc {
+      font-size: 12px; color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .style-card-arrow {
+      font-size: 18px; color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    /* ===== 风格详情子卡片列表 ===== */
+    .sub-card-list { display: flex; flex-direction: column; gap: 16px; padding-top: 6px; }
+    .sub-card-item {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px var(--shadow);
+      cursor: pointer;
+      transition: transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sub-card-item:active { transform: scale(0.98); }
+    .sub-card-item img {
+      display: block; width: 100%; height: auto;
+      background: #e8e2da;
+    }
+    .sub-card-item .sub-card-body {
+      padding: 10px 14px 12px;
+    }
+    .sub-card-item .sub-card-body h4 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 15px; font-weight: 600;
+    }
+    .sub-card-item .sub-card-body p {
+      font-size: 12px; color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ===== 占位页 ===== */
+    .placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 60px 20px; text-align: center;
     }
     .placeholder .icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
     .placeholder h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
-    .placeholder p  { font-size: 14px; color: var(--text-muted); }
+    .placeholder p { font-size: 14px; color: var(--text-muted); }
 
-    /* ===== RESPONSIVE ===== */
+    /* ===== 响应式 ===== */
     @media (min-width: 768px) {
       .page { max-width: 580px; }
       .case-card { display: flex; height: auto; }
-      .case-card-img { width: 240px; height: auto; flex-shrink: 0; }
+      .case-card-img { width: 220px; height: 150px; flex-shrink: 0; object-position: center 20%; }
       .case-card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-      .process-label { font-size: 16px; }
-      .process-label.is-first { font-size: 17px; }
-      .step-card { max-width: 480px; margin: 0 auto; }
+      .style-card-inner { padding: 20px 22px; }
+      .sub-card-item { display: flex; }
+      .sub-card-item img { width: 200px; flex-shrink: 0; }
+      .sub-card-item .sub-card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
+  <!-- ===== 固定头部 ===== -->
   <header class="app-header">
     <h1>乐活 AI</h1>
     <p>用 AI 让记忆重生</p>
   </header>
 
-  <!-- ===== CATEGORY TABS ===== -->
+  <!-- ===== 固定导航栏 ===== -->
   <div class="cat-bar-wrap">
     <div class="cat-bar">
       <div class="cat-item active" data-page="cat-photo">老照片修复</div>
@@ -318,13 +328,11 @@
   </div>
 
   <!-- ================================================================ -->
-  <!-- PAGE: 老照片修复 — 案例列表                                        -->
+  <!-- PAGE: 老照片修复 — 案例列表                                       -->
   <!-- ================================================================ -->
   <div class="page active" id="page-cat-photo">
     <div class="case-list">
       <div class="section-label">修复案例</div>
-
-      <!-- 案例一：封面图换成老照片 1.1 -->
       <div class="case-card" onclick="openCase('case-1')">
         <img class="case-card-img" src="images/photo_1.1.jpg" alt="老照片修复案例一">
         <div class="case-card-body">
@@ -333,120 +341,95 @@
           <p>从原始泛黄破损到现代写真风格，4 步看 AI 如何让老照片重获新生。</p>
         </div>
       </div>
-
-      <!-- 案例二 — 占位 -->
       <div class="case-card" style="opacity:0.5; cursor:default;">
         <div class="case-card-body" style="padding:40px 20px; text-align:center;">
-          <h3 style="color:var(--text-muted);">案例二</h3>
-          <p style="margin-top:4px;">即将上线，敬请期待</p>
+          <h3 style="color:var(--text-muted);">案例二</h3><p style="margin-top:4px;">即将上线，敬请期待</p>
         </div>
       </div>
-
-      <!-- 案例三 — 占位 -->
       <div class="case-card" style="opacity:0.5; cursor:default;">
         <div class="case-card-body" style="padding:40px 20px; text-align:center;">
-          <h3 style="color:var(--text-muted);">案例三</h3>
-          <p style="margin-top:4px;">即将上线，敬请期待</p>
+          <h3 style="color:var(--text-muted);">案例三</h3><p style="margin-top:4px;">即将上线，敬请期待</p>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ================================================================ -->
-  <!-- PAGE: AI 文字卡片 — 卡片作品展示                                  -->
+  <!-- PAGE: AI 文字卡片 — 风格分类                                      -->
   <!-- ================================================================ -->
   <div class="page" id="page-cat-card">
     <div class="case-list">
-      <div class="section-label">AI 文字卡片</div>
+      <div class="section-label">文字卡片 · 风格集</div>
 
-      <!-- 卡片 1：稳步而行（绛红金线风） -->
-      <div class="case-card" onclick="openCase('card-1')">
-        <img class="case-card-img" src="images/card_1.png" alt="稳步而行">
-        <div class="case-card-body">
-          <span class="case-tag">绛红金线</span>
-          <h3>稳步而行</h3>
-          <p>花开有早晚，行路有快慢。稳住脚步慢慢走，行得安稳。</p>
+      <!-- 朱墨金笺 -->
+      <div class="style-card" onclick="openStyle('style-1')">
+        <div class="style-card-inner">
+          <div class="style-card-icon" style="background:#efe6dc; color:#8b3a2a;">朱</div>
+          <div class="style-card-info">
+            <h3>朱墨金笺</h3>
+            <div class="style-desc">绛红底色 · 金线勾勒 · 1 张卡片</div>
+          </div>
+          <div class="style-card-arrow">›</div>
         </div>
       </div>
 
-      <!-- 卡片 2：穿上铠甲去战斗（绿金国潮风） -->
-      <div class="case-card" onclick="openCase('card-2')">
-        <img class="case-card-img" src="images/card_2.png" alt="穿上铠甲去战斗">
-        <div class="case-card-body">
-          <span class="case-tag">绿金国潮</span>
-          <h3>穿上铠甲去战斗</h3>
-          <p>早上出门前，记得对自己说一声：我是最棒的。然后穿上铠甲，出门战斗厮杀吧。</p>
+      <!-- 翠金雅韵 -->
+      <div class="style-card" onclick="openStyle('style-2')">
+        <div class="style-card-inner">
+          <div class="style-card-icon" style="background:#e6efe8; color:#2a6b3a;">翠</div>
+          <div class="style-card-info">
+            <h3>翠金雅韵</h3>
+            <div class="style-desc">墨绿底色 · 金色点缀 · 2 张卡片</div>
+          </div>
+          <div class="style-card-arrow">›</div>
         </div>
       </div>
 
-      <!-- 卡片 3：改变自己（水墨意境风） -->
-      <div class="case-card" onclick="openCase('card-3')">
-        <img class="case-card-img" src="images/card_3.png" alt="改变自己">
-        <div class="case-card-body">
-          <span class="case-tag">水墨意境</span>
-          <h3>改变自己</h3>
-          <p>不要活在别人眼中，更不要活在别人嘴中。你能做到的，只有改变你自己。</p>
+      <!-- 墨韵禅心 -->
+      <div class="style-card" onclick="openStyle('style-3')">
+        <div class="style-card-inner">
+          <div class="style-card-icon" style="background:#e8e4e0; color:#4a3a3a;">墨</div>
+          <div class="style-card-info">
+            <h3>墨韵禅心</h3>
+            <div class="style-desc">水墨意境 · 国潮水墨 · 2 张卡片</div>
+          </div>
+          <div class="style-card-arrow">›</div>
         </div>
       </div>
 
-      <!-- 卡片 4：放下攀比，去看世界（绿金国潮风） -->
-      <div class="case-card" onclick="openCase('card-4')">
-        <img class="case-card-img" src="images/card_4.jpg" alt="放下攀比，去看世界">
-        <div class="case-card-body">
-          <span class="case-tag">绿金国潮</span>
-          <h3>放下攀比，去看世界</h3>
-          <p>尺有所短寸有所长，不去事事都攀比。心态顺畅身体好，省下药钱旅游去。</p>
+      <!-- 山水清音 -->
+      <div class="style-card" onclick="openStyle('style-4')">
+        <div class="style-card-inner">
+          <div class="style-card-icon" style="background:#dce8e4; color:#2a5a5a;">山</div>
+          <div class="style-card-info">
+            <h3>山水清音</h3>
+            <div class="style-desc">山水意境 · 1 张卡片</div>
+          </div>
+          <div class="style-card-arrow">›</div>
         </div>
       </div>
 
-      <!-- 卡片 5：出来混最重要的是什么（国潮水墨风） -->
-      <div class="case-card" onclick="openCase('card-5')">
-        <img class="case-card-img" src="images/card_5.jpg" alt="出来混最重要的是什么？">
-        <div class="case-card-body">
-          <span class="case-tag">国潮水墨</span>
-          <h3>出来混最重要的是什么？</h3>
-          <p>出来混最重要的是什么？是出来！踏上取经路，比抵达灵山更重要。</p>
+      <!-- 静心花语 -->
+      <div class="style-card" onclick="openStyle('style-5')">
+        <div class="style-card-inner">
+          <div class="style-card-icon" style="background:#efe8dc; color:#7a5a3a;">静</div>
+          <div class="style-card-info">
+            <h3>静心花语</h3>
+            <div class="style-desc">山景白茶 · 竹林庭院 · 2 张卡片</div>
+          </div>
+          <div class="style-card-arrow">›</div>
         </div>
       </div>
 
-      <!-- 卡片 6：心灯（山水意境风） -->
-      <div class="case-card" onclick="openCase('card-6')">
-        <img class="case-card-img" src="images/card_6.jpg" alt="心灯">
-        <div class="case-card-body">
-          <span class="case-tag">山水意境</span>
-          <h3>心灯</h3>
-          <p>心灯不借他人火，自照乾坤步步明。志在青云终不坠，身经风雨亦难倾。</p>
-        </div>
-      </div>
-
-      <!-- 卡片 7：去做（山景白茶风） -->
-      <div class="case-card" onclick="openCase('card-7')">
-        <img class="case-card-img" src="images/card_7.jpg" alt="去做">
-        <div class="case-card-body">
-          <span class="case-tag">山景白茶</span>
-          <h3>去做</h3>
-          <p>你做什么都不会白做，你尽管去干就好了。就怕你太在乎自己那一文不值的面子，犹豫不决患得患失。</p>
-        </div>
-      </div>
-
-      <!-- 卡片 8：沉淀自己（竹林庭院风） -->
-      <div class="case-card" onclick="openCase('card-8')">
-        <img class="case-card-img" src="images/card_8.jpg" alt="沉淀自己">
-        <div class="case-card-body">
-          <span class="case-tag">竹林庭院</span>
-          <h3>沉淀自己</h3>
-          <p>沉淀自己最好的方式就是在繁华中自律，安静处自省，低谷时自强。</p>
-        </div>
-      </div>
-
-      <!-- 卡片 9：了不起的自己（水彩山水风） -->
-      <div class="case-card" onclick="openCase('card-9')">
-        <img class="case-card-img" src="images/card_9.jpg" alt="了不起的自己">
-        <div class="case-card-body">
-          <span class="case-tag">水彩山水</span>
-          <h3>了不起的自己</h3>
-          <p>活着就要遇山开山，见水架桥。一直陪着你的，永远都是那个了不起的自己。</p>
+      <!-- 水色流光 -->
+      <div class="style-card" onclick="openStyle('style-6')">
+        <div class="style-card-inner">
+          <div class="style-card-icon" style="background:#dce4ec; color:#3a5a7a;">水</div>
+          <div class="style-card-info">
+            <h3>水色流光</h3>
+            <div class="style-desc">水彩山水 · 1 张卡片</div>
+          </div>
+          <div class="style-card-arrow">›</div>
         </div>
       </div>
 
@@ -454,16 +437,148 @@
   </div>
 
   <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 1 - 稳步而行                                     -->
+  <!-- 风格详情页（子卡片列表）                                          -->
+  <!-- ================================================================ -->
+  <!-- 风格1：朱墨金笺 — 稳步而行 -->
+  <div class="page" id="page-style-1">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeStyle()">返回</span>
+      <h2>朱墨金笺</h2>
+    </div>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">绛红金线风 · 沉稳典雅</p>
+    <div class="sub-card-list">
+      <div class="sub-card-item" onclick="openCardDetail('card-1')">
+        <img src="images/card_1.png" alt="稳步而行" loading="lazy">
+        <div class="sub-card-body">
+          <h4>稳步而行</h4>
+          <p>花开有早晚，行路有快慢。稳住脚步慢慢走，行得安稳。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风格2：翠金雅韵 — 2张 -->
+  <div class="page" id="page-style-2">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeStyle()">返回</span>
+      <h2>翠金雅韵</h2>
+    </div>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">绿金国潮风 · 雅致大气</p>
+    <div class="sub-card-list">
+      <div class="sub-card-item" onclick="openCardDetail('card-2')">
+        <img src="images/card_2.png" alt="穿上铠甲去战斗" loading="lazy">
+        <div class="sub-card-body">
+          <h4>穿上铠甲去战斗</h4>
+          <p>早上出门前，记得对自己说一声：我是最棒的。然后穿上铠甲，出门战斗厮杀吧。</p>
+        </div>
+      </div>
+      <div class="sub-card-item" onclick="openCardDetail('card-4')">
+        <img src="images/card_4.jpg" alt="放下攀比，去看世界" loading="lazy">
+        <div class="sub-card-body">
+          <h4>放下攀比，去看世界</h4>
+          <p>尺有所短寸有所长，不去事事都攀比。心态顺畅身体好，省下药钱旅游去。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风格3：墨韵禅心 — 2张 -->
+  <div class="page" id="page-style-3">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeStyle()">返回</span>
+      <h2>墨韵禅心</h2>
+    </div>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">水墨意境 · 禅意东方</p>
+    <div class="sub-card-list">
+      <div class="sub-card-item" onclick="openCardDetail('card-3')">
+        <img src="images/card_3.png" alt="改变自己" loading="lazy">
+        <div class="sub-card-body">
+          <h4>改变自己</h4>
+          <p>不要活在别人眼中，更不要活在别人嘴中。你能做到的，只有改变你自己。</p>
+        </div>
+      </div>
+      <div class="sub-card-item" onclick="openCardDetail('card-5')">
+        <img src="images/card_5.jpg" alt="出来混最重要的是什么？" loading="lazy">
+        <div class="sub-card-body">
+          <h4>出来混最重要的是什么？</h4>
+          <p>出来混最重要的是什么？是出来！踏上取经路，比抵达灵山更重要。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风格4：山水清音 — 1张 -->
+  <div class="page" id="page-style-4">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeStyle()">返回</span>
+      <h2>山水清音</h2>
+    </div>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">山水意境 · 澄澈明心</p>
+    <div class="sub-card-list">
+      <div class="sub-card-item" onclick="openCardDetail('card-6')">
+        <img src="images/card_6.jpg" alt="心灯" loading="lazy">
+        <div class="sub-card-body">
+          <h4>心灯</h4>
+          <p>心灯不借他人火，自照乾坤步步明。志在青云终不坠，身经风雨亦难倾。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风格5：静心花语 — 2张 -->
+  <div class="page" id="page-style-5">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeStyle()">返回</span>
+      <h2>静心花语</h2>
+    </div>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">白茶·竹林 · 自然疗愈</p>
+    <div class="sub-card-list">
+      <div class="sub-card-item" onclick="openCardDetail('card-7')">
+        <img src="images/card_7.jpg" alt="去做" loading="lazy">
+        <div class="sub-card-body">
+          <h4>去做</h4>
+          <p>你做什么都不会白做，你尽管去干就好了。就怕你太在乎自己那一文不值的面子。</p>
+        </div>
+      </div>
+      <div class="sub-card-item" onclick="openCardDetail('card-8')">
+        <img src="images/card_8.jpg" alt="沉淀自己" loading="lazy">
+        <div class="sub-card-body">
+          <h4>沉淀自己</h4>
+          <p>沉淀自己最好的方式就是在繁华中自律，安静处自省，低谷时自强。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风格6：水色流光 — 1张 -->
+  <div class="page" id="page-style-6">
+    <div class="detail-header">
+      <span class="back-btn" onclick="closeStyle()">返回</span>
+      <h2>水色流光</h2>
+    </div>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">水彩山水 · 温柔治愈</p>
+    <div class="sub-card-list">
+      <div class="sub-card-item" onclick="openCardDetail('card-9')">
+        <img src="images/card_9.jpg" alt="了不起的自己" loading="lazy">
+        <div class="sub-card-body">
+          <h4>了不起的自己</h4>
+          <p>活着就要遇山开山，见水架桥。一直陪着你的，永远都是那个了不起的自己。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- 卡片详情页（完整尺寸）                                            -->
   <!-- ================================================================ -->
   <div class="page" id="page-card-1">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>稳步而行</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">绛红金线 · 稳步而行</div>
+        <div class="process-label is-first">朱墨金笺 · 稳步而行</div>
         <div class="step-card">
           <img src="images/card_1.png" alt="稳步而行" loading="lazy">
           <div class="step-info">
@@ -476,17 +591,14 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 2 - 穿上铠甲去战斗                                -->
-  <!-- ================================================================ -->
   <div class="page" id="page-card-2">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>穿上铠甲去战斗</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">绿金国潮 · 穿上铠甲去战斗</div>
+        <div class="process-label is-first">翠金雅韵 · 穿上铠甲去战斗</div>
         <div class="step-card">
           <img src="images/card_2.png" alt="穿上铠甲去战斗" loading="lazy">
           <div class="step-info">
@@ -500,17 +612,14 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 3 - 改变自己                                     -->
-  <!-- ================================================================ -->
   <div class="page" id="page-card-3">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>改变自己</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">水墨意境 · 改变自己</div>
+        <div class="process-label is-first">墨韵禅心 · 改变自己</div>
         <div class="step-card">
           <img src="images/card_3.png" alt="改变自己" loading="lazy">
           <div class="step-info">
@@ -523,17 +632,14 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 4 - 放下攀比，去看世界                            -->
-  <!-- ================================================================ -->
   <div class="page" id="page-card-4">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>放下攀比，去看世界</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">绿金国潮 · 放下攀比，去看世界</div>
+        <div class="process-label is-first">翠金雅韵 · 放下攀比，去看世界</div>
         <div class="step-card">
           <img src="images/card_4.jpg" alt="放下攀比，去看世界" loading="lazy">
           <div class="step-info">
@@ -546,17 +652,14 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 5 - 出来混最重要的是什么                          -->
-  <!-- ================================================================ -->
   <div class="page" id="page-card-5">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>出来混最重要的是什么？</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">国潮水墨 · 出来混最重要的是什么？</div>
+        <div class="process-label is-first">墨韵禅心 · 出来混最重要的是什么？</div>
         <div class="step-card">
           <img src="images/card_5.jpg" alt="出来混最重要的是什么？" loading="lazy">
           <div class="step-info">
@@ -569,17 +672,14 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 6 - 心灯                                        -->
-  <!-- ================================================================ -->
   <div class="page" id="page-card-6">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>心灯</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">山水意境 · 心灯</div>
+        <div class="process-label is-first">山水清音 · 心灯</div>
         <div class="step-card">
           <img src="images/card_6.jpg" alt="心灯" loading="lazy">
           <div class="step-info">
@@ -592,17 +692,14 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 7 - 去做                                        -->
-  <!-- ================================================================ -->
   <div class="page" id="page-card-7">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>去做</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">山景白茶 · 去做</div>
+        <div class="process-label is-first">静心花语 · 去做</div>
         <div class="step-card">
           <img src="images/card_7.jpg" alt="去做" loading="lazy">
           <div class="step-info">
@@ -615,17 +712,14 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 8 - 沉淀自己                                     -->
-  <!-- ================================================================ -->
   <div class="page" id="page-card-8">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>沉淀自己</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">竹林庭院 · 沉淀自己</div>
+        <div class="process-label is-first">静心花语 · 沉淀自己</div>
         <div class="step-card">
           <img src="images/card_8.jpg" alt="沉淀自己" loading="lazy">
           <div class="step-info">
@@ -638,17 +732,14 @@
     </div>
   </div>
 
-  <!-- ================================================================ -->
-  <!-- CASE DETAIL: 卡片 9 - 了不起的自己                                 -->
-  <!-- ================================================================ -->
   <div class="page" id="page-card-9">
     <div class="detail-header">
-      <span class="back-btn" onclick="closeCard()">返回</span>
+      <span class="back-btn" onclick="goBackFromCard()">返回</span>
       <h2>了不起的自己</h2>
     </div>
     <div class="process-gallery">
       <div class="process-item" style="animation-delay:0.05s">
-        <div class="process-label is-first">水彩山水 · 了不起的自己</div>
+        <div class="process-label is-first">水色流光 · 了不起的自己</div>
         <div class="step-card">
           <img src="images/card_9.jpg" alt="了不起的自己" loading="lazy">
           <div class="step-info">
@@ -662,7 +753,7 @@
   </div>
 
   <!-- ================================================================ -->
-  <!-- PAGE: AI 绘画（占位）                                              -->
+  <!-- PAGE: 占位区                                                     -->
   <!-- ================================================================ -->
   <div class="page" id="page-cat-paint">
     <div class="placeholder">
@@ -671,10 +762,6 @@
       <p>即将上线，敬请期待</p>
     </div>
   </div>
-
-  <!-- ================================================================ -->
-  <!-- PAGE: AI 海报（占位）                                              -->
-  <!-- ================================================================ -->
   <div class="page" id="page-cat-poster">
     <div class="placeholder">
       <div class="icon">🖼️</div>
@@ -682,10 +769,6 @@
       <p>即将上线，敬请期待</p>
     </div>
   </div>
-
-  <!-- ================================================================ -->
-  <!-- PAGE: 诗词创作（占位）                                            -->
-  <!-- ================================================================ -->
   <div class="page" id="page-cat-poem">
     <div class="placeholder">
       <div class="icon">📜</div>
@@ -693,10 +776,6 @@
       <p>即将上线，敬请期待</p>
     </div>
   </div>
-
-  <!-- ================================================================ -->
-  <!-- PAGE: 关于（占位）                                                -->
-  <!-- ================================================================ -->
   <div class="page" id="page-cat-about">
     <div class="placeholder">
       <div class="icon">✨</div>
@@ -706,73 +785,63 @@
   </div>
 
   <!-- ================================================================ -->
-  <!-- CASE DETAIL: 案例一                                                -->
+  <!-- CASE DETAIL: 案例一（老照片修复）                                -->
   <!-- ================================================================ -->
   <div class="page" id="page-case-1">
     <div class="detail-header">
       <span class="back-btn" onclick="closeCase()">返回</span>
       <h2>案例一：老照片修复</h2>
     </div>
-
     <div class="process-gallery">
-
-      <!-- 原片 -->
       <div class="process-item" style="animation-delay:0.05s">
         <div class="process-label is-first">原片</div>
         <div class="step-card">
-          <img src="images/photo_1.1.jpg" alt="照片修复 1.1 — 原始老照片" loading="lazy">
+          <img src="images/photo_1.1.jpg" alt="照片修复 1.1" loading="lazy">
           <div class="step-info">
             <span class="tag">原始底片</span>
             <p>泛黄、褪色、布满裂纹的原始老照片，岁月的痕迹清晰可见。</p>
           </div>
         </div>
       </div>
-
-      <!-- AI 智能去噪 · 划痕修复 · 对比度优化 -->
       <div class="process-item" style="animation-delay:0.15s">
         <div class="process-label">AI 智能去噪 · 划痕修复 · 对比度优化</div>
         <div class="step-card">
-          <img src="images/photo_1.2.jpg" alt="照片修复 1.2 — 修复黑白版" loading="lazy">
+          <img src="images/photo_1.2.jpg" alt="照片修复 1.2" loading="lazy">
           <div class="step-info">
             <span class="tag">修复还原</span>
             <p>AI 去除裂纹与污渍，还原清晰的黑白影像，人物轮廓更加分明。</p>
           </div>
         </div>
       </div>
-
-      <!-- AI 智能上色 · 色彩还原 · 氛围调校 -->
       <div class="process-item" style="animation-delay:0.25s">
         <div class="process-label">AI 智能上色 · 色彩还原 · 氛围调校</div>
         <div class="step-card">
-          <img src="images/photo_1.3.jpg" alt="照片修复 1.3 — 修复上色版" loading="lazy">
+          <img src="images/photo_1.3.jpg" alt="照片修复 1.3" loading="lazy">
           <div class="step-info">
             <span class="tag">色彩重生</span>
             <p>AI 为黑白照片赋予色彩——温暖肤色、青蓝衣衫，旧时光有了温度。</p>
           </div>
         </div>
       </div>
-
-      <!-- AI 高清增强 · 风格迁移 · 妆造美化 -->
       <div class="process-item" style="animation-delay:0.35s">
         <div class="process-label">AI 高清增强 · 风格迁移 · 妆造美化</div>
         <div class="step-card">
-          <img src="images/photo_1.4.jpg" alt="照片修复 1.4 — 现代写真版" loading="lazy">
+          <img src="images/photo_1.4.jpg" alt="照片修复 1.4" loading="lazy">
           <div class="step-info">
             <span class="tag">写真焕新</span>
             <p>现代写真风格重塑——高清画质、精致妆造，老照片里的人焕然一新。</p>
           </div>
         </div>
       </div>
-
-    </div><!-- /process-gallery -->
-  </div><!-- /page-case-1 -->
+    </div>
+  </div>
 
   <script>
-    // ===== 分类 Tab 切换 =====
     const catItems = document.querySelectorAll('.cat-item');
     const pages = {};
     document.querySelectorAll('.page').forEach(p => { pages[p.id] = p; });
 
+    // ===== Tab 切换 =====
     catItems.forEach(item => {
       item.addEventListener('click', function() {
         catItems.forEach(t => t.classList.remove('active'));
@@ -784,31 +853,48 @@
       });
     });
 
-    // ===== 打开/关闭案例详情 =====
+    // ===== 老照片案例 =====
     function openCase(id) {
       catItems.forEach(t => t.classList.remove('active'));
       Object.values(pages).forEach(p => p.classList.remove('active'));
       if (pages['page-' + id]) pages['page-' + id].classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
     function closeCase() {
       catItems.forEach(t => t.classList.remove('active'));
-      const photoTab = document.querySelector('.cat-item[data-page="cat-photo"]');
-      if (photoTab) photoTab.classList.add('active');
+      const tab = document.querySelector('.cat-item[data-page="cat-photo"]');
+      if (tab) tab.classList.add('active');
       Object.values(pages).forEach(p => p.classList.remove('active'));
       if (pages['page-cat-photo']) pages['page-cat-photo'].classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ===== 打开/关闭卡片详情 =====
-    function closeCard() {
+    // ===== 打开风格分类 =====
+    function openStyle(id) {
       catItems.forEach(t => t.classList.remove('active'));
-      const cardTab = document.querySelector('.cat-item[data-page="cat-card"]');
-      if (cardTab) cardTab.classList.add('active');
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      if (pages['page-' + id]) pages['page-' + id].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function closeStyle() {
+      catItems.forEach(t => t.classList.remove('active'));
+      const tab = document.querySelector('.cat-item[data-page="cat-card"]');
+      if (tab) tab.classList.add('active');
       Object.values(pages).forEach(p => p.classList.remove('active'));
       if (pages['page-cat-card']) pages['page-cat-card'].classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ===== 卡片详情（记录来源：从风格页进入） =====
+    function openCardDetail(id) {
+      catItems.forEach(t => t.classList.remove('active'));
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      if (pages['page-' + id]) pages['page-' + id].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function goBackFromCard() {
+      // 回到卡片分类页
+      closeStyle();
     }
 
     // ===== 滚动动画 =====
@@ -819,7 +905,6 @@
         }
       });
     }, { threshold: 0.15 });
-
     document.querySelectorAll('.process-item').forEach(el => {
       el.style.animationPlayState = 'paused';
       observer.observe(el);
