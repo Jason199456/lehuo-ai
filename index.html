@@ -30,7 +30,7 @@
       line-height: 1.6;
       min-height: 100vh;
       /* 留出固定头部+导航栏的空间 */
-      padding-top: 108px;
+      padding-top: 120px;
     }
 
     /* ===== 固定头部 ===== */
@@ -53,10 +53,10 @@
 
     /* ===== 固定导航栏 ===== */
     .cat-bar-wrap {
-      position: fixed; top: 54px; left: 0; right: 0;
+      position: fixed; top: 62px; left: 0; right: 0;
       z-index: 99;
       background: var(--bg);
-      padding: 6px 12px 10px;
+      padding: 6px 8px 10px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
@@ -74,7 +74,7 @@
     .cat-item {
       flex: 1;
       text-align: center;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--tab-inactive);
       padding: 8px 4px;
@@ -359,46 +359,22 @@
   <!-- ================================================================ -->
   <div class="page" id="page-cat-card">
     <div class="case-list">
-      <div class="section-label">文字卡片 · 风格集</div>
+      <div class="section-label">文字卡片</div>
 
-      <!-- 朱墨金笺 -->
+      <!-- 国风雅集（合集） -->
       <div class="style-card" onclick="openStyle('style-1')">
         <div class="style-card-inner">
-          <div class="style-card-icon" style="background:#efe6dc; color:#8b3a2a;">朱</div>
+          <div class="style-card-icon" style="background:#e8dcd0; color:#6b3a2a;">雅</div>
           <div class="style-card-info">
-            <h3>朱墨金笺</h3>
-            <div class="style-desc">绛红底色 · 金线勾勒 · 1 张卡片</div>
-          </div>
-          <div class="style-card-arrow">›</div>
-        </div>
-      </div>
-
-      <!-- 翠金雅韵 -->
-      <div class="style-card" onclick="openStyle('style-2')">
-        <div class="style-card-inner">
-          <div class="style-card-icon" style="background:#e6efe8; color:#2a6b3a;">翠</div>
-          <div class="style-card-info">
-            <h3>翠金雅韵</h3>
-            <div class="style-desc">墨绿底色 · 金色点缀 · 2 张卡片</div>
-          </div>
-          <div class="style-card-arrow">›</div>
-        </div>
-      </div>
-
-      <!-- 墨韵禅心 -->
-      <div class="style-card" onclick="openStyle('style-3')">
-        <div class="style-card-inner">
-          <div class="style-card-icon" style="background:#e8e4e0; color:#4a3a3a;">墨</div>
-          <div class="style-card-info">
-            <h3>墨韵禅心</h3>
-            <div class="style-desc">水墨意境 · 国潮水墨 · 2 张卡片</div>
+            <h3>国风雅集</h3>
+            <div class="style-desc">朱墨金笺 · 翠金雅韵 · 墨韵禅心 · 5 张卡片</div>
           </div>
           <div class="style-card-arrow">›</div>
         </div>
       </div>
 
       <!-- 山水清音 -->
-      <div class="style-card" onclick="openStyle('style-4')">
+      <div class="style-card" onclick="openStyle('style-2')">
         <div class="style-card-inner">
           <div class="style-card-icon" style="background:#dce8e4; color:#2a5a5a;">山</div>
           <div class="style-card-info">
@@ -410,24 +386,12 @@
       </div>
 
       <!-- 静心花语 -->
-      <div class="style-card" onclick="openStyle('style-5')">
+      <div class="style-card" onclick="openStyle('style-3')">
         <div class="style-card-inner">
           <div class="style-card-icon" style="background:#efe8dc; color:#7a5a3a;">静</div>
           <div class="style-card-info">
             <h3>静心花语</h3>
-            <div class="style-desc">山景白茶 · 竹林庭院 · 2 张卡片</div>
-          </div>
-          <div class="style-card-arrow">›</div>
-        </div>
-      </div>
-
-      <!-- 水色流光 -->
-      <div class="style-card" onclick="openStyle('style-6')">
-        <div class="style-card-inner">
-          <div class="style-card-icon" style="background:#dce4ec; color:#3a5a7a;">水</div>
-          <div class="style-card-info">
-            <h3>水色流光</h3>
-            <div class="style-desc">水彩山水 · 1 张卡片</div>
+            <div class="style-desc">白茶 · 竹林 · 水彩 · 3 张卡片</div>
           </div>
           <div class="style-card-arrow">›</div>
         </div>
