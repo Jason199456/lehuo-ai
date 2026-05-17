@@ -10,22 +10,22 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--bg:#f5f0eb;--card-bg:#fff;--text:#2c2c2c;--text-muted:#8a8580;--accent:#b8860b;--accent-lt:#d4a843;--shadow:rgba(0,0,0,.06);--tag-bg:#f0ebe4;--tab-inactive:#3a8a7c}
     html{font-size:16px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-    body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;padding-top:120px}
+    body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;padding-top:142px}
     .app-header{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);padding:10px 20px 4px;text-align:center}
     .app-header h1{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--accent);letter-spacing:4px}
     .app-header p{font-size:10px;color:var(--text-muted);letter-spacing:2px;margin-top:0}
     /* ===== 顶层导航 ===== */
-    .nav-top-wrap{position:fixed;top:52px;left:0;right:0;z-index:99;background:var(--bg);padding:4px 12px 2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-    .nav-top{display:flex;gap:3px;max-width:480px;margin:0 auto;min-width:min-content}
-    .nav-top-item{flex:0 0 auto;font-size:13px;font-weight:600;color:var(--tab-inactive);padding:6px 18px;border-radius:20px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;letter-spacing:.5px;white-space:nowrap;text-align:center;min-width:80px}
+    .nav-top-wrap{position:fixed;top:52px;left:0;right:0;z-index:99;background:var(--bg);padding:4px 8px 2px;border-bottom:1px solid rgba(184,134,11,.08)}
+    .nav-top{display:flex;gap:2px;max-width:100%}
+    .nav-top-item{flex:1;text-align:center;font-size:12px;font-weight:600;color:var(--tab-inactive);padding:7px 4px;border-radius:8px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;letter-spacing:.3px;white-space:nowrap;max-width:90px}
     .nav-top-item.active{color:#fff;background:var(--accent);box-shadow:0 2px 8px rgba(184,134,11,.2)}
     .nav-top-item .count{font-size:10px;opacity:.7;margin-left:2px}
     /* ===== 子导航 ===== */
-    .nav-sub-wrap{position:fixed;top:82px;left:0;right:0;z-index:98;background:var(--bg);padding:0 12px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(184,134,11,.08)}
-    .nav-sub{display:flex;gap:2px;max-width:640px;margin:0 auto;min-width:min-content}
-    .nav-sub-item{flex:0 0 auto;font-size:12px;font-weight:500;color:var(--tab-inactive);padding:5px 14px;border-radius:16px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;white-space:nowrap;opacity:.7}
-    .nav-sub-item.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-lt));font-weight:600;opacity:1;box-shadow:0 2px 6px rgba(184,134,11,.2)}
-    body{padding-top:122px}
+    .nav-sub-wrap{position:fixed;top:96px;left:0;right:0;z-index:98;background:var(--bg);padding:0 12px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(184,134,11,.06)}
+    .nav-sub{display:flex;gap:0;max-width:640px;margin:0 auto;min-width:min-content}
+    .nav-sub-item{flex:0 0 auto;font-size:11px;font-weight:400;color:var(--tab-inactive);padding:6px 12px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;white-space:nowrap;opacity:.65;border-bottom:2px solid transparent}
+    .nav-sub-item.active{color:var(--accent);font-weight:600;opacity:1;border-bottom-color:var(--accent);background:none}
+    body{padding-top:140px}
     /* ===== 页面容器 ===== */
     .page{display:none;max-width:640px;margin:0 auto;padding:0 16px 60px}
     .page.active{display:block}
@@ -90,11 +90,14 @@
 <body>
   <header class="app-header"><h1>乐活 AI</h1><p>用 AI 让记忆重生</p></header>
 
-  <!-- 顶层导航：3 个分组 -->
+  <!-- 顶层导航：6 个主导航 -->
   <div class="nav-top-wrap">
     <div class="nav-top">
+      <div class="nav-top-item" data-group="home">🏠 首页</div>
       <div class="nav-top-item active" data-group="visual">📷 影像创作</div>
       <div class="nav-top-item" data-group="text">🖋️ 文字创作</div>
+      <div class="nav-top-item" data-group="office">📋 AI办公</div>
+      <div class="nav-top-item" data-group="practice">⚙️ AI实践集</div>
       <div class="nav-top-item" data-group="more">📚 更多</div>
     </div>
   </div>
@@ -157,6 +160,8 @@
     </div>
   </div>
 
+  <div class="page" id="page-cat-home"><div class="placeholder"><div class="icon">🏠</div><h2>欢迎来到乐活AI</h2><p>用 AI 让记忆重生，用创意点亮生活。<br>探索 AI 创作的无限可能。</p></div></div>
+  <div class="page" id="page-cat-office"><div class="placeholder"><div class="icon">📋</div><h2>AI 办公</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-practice"><div class="placeholder"><div class="icon">⚙️</div><h2>AI 实践集</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-paint"><div class="placeholder"><div class="icon">🎨</div><h2>AI 绘画</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-poster"><div class="placeholder"><div class="icon">🖼️</div><h2>AI 海报</h2><p>即将上线，敬请期待</p></div></div>
@@ -253,6 +258,7 @@
   <script>
     // ===== 分组数据 =====
     const groups = {
+      home: { label:'🏠 首页', items:[], pageId:'cat-home' },
       visual: { label:'📷 影像创作', items:[
         {id:'cat-photo', label:'老照片修复'},
         {id:'cat-paint', label:'AI 绘画'},
@@ -262,8 +268,9 @@
         {id:'cat-card', label:'AI 文字卡片'},
         {id:'cat-poem', label:'诗词创作'}
       ]},
+      office: { label:'📋 AI办公', items:[], pageId:'cat-office' },
+      practice: { label:'⚙️ AI实践集', items:[], pageId:'cat-practice' },
       more: { label:'📚 更多', items:[
-        {id:'cat-practice', label:'AI 实践集'},
         {id:'cat-about', label:'关于'}
       ]}
     };
@@ -277,6 +284,12 @@
     // ===== 渲染子导航 =====
     function renderSub(groupId) {
       const group = groups[groupId];
+      // 空子项的一级导航（如首页、AI办公、AI实践集）直接跳转到对应页面
+      if (!group.items || group.items.length === 0) {
+        subContainer.innerHTML = '';
+        if (group.pageId) switchPage(group.pageId);
+        return;
+      }
       subContainer.innerHTML = group.items.map((item,i) =>
         `<div class="nav-sub-item${i===0?' active':''}" data-page="${item.id}">${item.label}</div>`
       ).join('');
