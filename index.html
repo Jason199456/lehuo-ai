@@ -3,88 +3,684 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>乐活AI — AI作品展示</title>
+  <meta name="description" content="乐活AI - 用AI让记忆重生，提供老照片修复、AI绘画、文字创作等服务。探索AI创作的无限可能，用创意点亮生活。">
+  <meta name="keywords" content="AI,老照片修复,AI绘画,文字创作,人工智能">
+  <meta property="og:title" content="乐活AI — 用AI让记忆重生">
+  <meta property="og:description" content="用AI让记忆重生，用创意点亮生活。探索AI创作的无限可能。">
+  <meta name="theme-color" content="#d4a843">
+  <title>乐活AI — 用AI让记忆重生</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#f5f0eb;--card-bg:#fff;--text:#2c2c2c;--text-muted:#8a8580;--accent:#b8860b;--accent-lt:#d4a843;--shadow:rgba(0,0,0,.06);--tag-bg:#f0ebe4;--tab-inactive:#3a8a7c}
+
+    :root{
+      /* 主色调 - 更活泼的金色 */
+      --accent:#d4a843;
+      --accent-dark:#b8860b;
+      --accent-light:#f0d78c;
+      --accent-gradient:linear-gradient(135deg,#d4a843 0%,#b8860b 100%);
+      
+      /* 背景色 */
+      --bg:#faf8f5;
+      --bg-warm:#f5f0eb;
+      --card-bg:#ffffff;
+      --card-bg-hover:#fdfcfa;
+      
+      /* 文字色 */
+      --text:#1a1a1a;
+      --text-secondary:#4a4a4a;
+      --text-muted:#8a8a8a;
+      
+      /* 阴影 */
+      --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
+      --shadow:0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg:0 8px 24px rgba(0,0,0,0.12);
+      --shadow-accent:0 4px 16px rgba(212,168,67,0.25);
+      
+      /* 圆角 */
+      --radius-sm:8px;
+      --radius:16px;
+      --radius-lg:24px;
+      --radius-full:9999px;
+      
+      /* 动画 */
+      --transition-fast:0.15s ease;
+      --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+      --transition-slow:0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+
     html{font-size:16px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-    body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;padding-top:150px}
-    .app-header{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);padding:10px 20px 4px;text-align:center}
-    .app-header h1{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--accent);letter-spacing:4px}
-    .app-header p{font-size:10px;color:var(--text-muted);letter-spacing:2px;margin-top:0}
-    /* ===== 顶层导航：三层结构 ===== */
-    .nav-top-wrap{position:fixed;top:60px;left:0;right:0;z-index:99;background:var(--bg);border-bottom:1px solid rgba(184,134,11,.08)}
-    .nav-top-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:5px 6px 4px}
+
+    body{
+      font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      min-height:100vh;
+      padding-top:179px;
+      transition:background-color var(--transition);
+    }
+
+    /* ===== 头部 ===== */
+    .app-header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:100;
+      background:rgba(250,248,245,0.95);
+      padding:12px 20px 8px;
+      text-align:center;
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      transition:all var(--transition);
+    }
+
+    .app-header h1{
+      font-family:'Noto Serif SC',serif;
+      font-size:22px;
+      font-weight:700;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      letter-spacing:3px;
+      animation:fadeInDown 0.6s ease;
+    }
+
+    .app-header p{
+      font-size:11px;
+      color:var(--text-muted);
+      letter-spacing:2px;
+      margin-top:2px;
+      animation:fadeInDown 0.6s ease 0.1s both;
+    }
+
+    /* ===== 顶层导航 ===== */
+    .nav-top-wrap{
+      position:fixed;
+      top:56px;
+      left:0;
+      right:0;
+      z-index:99;
+      background:var(--bg);
+      padding:8px 0;
+    }
+
+    .nav-top-scroll{
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      padding:12px 16px;
+    }
+
     .nav-top-scroll::-webkit-scrollbar{display:none}
-    .nav-top{display:inline-flex;gap:6px;padding:0 8px}
-    .nav-top-item{flex:0 0 auto;text-align:center;font-size:13px;font-weight:600;color:var(--tab-inactive);padding:7px 12px;border-radius:8px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;letter-spacing:.3px;white-space:nowrap}
-    .nav-top-item.active{color:#fff;background:var(--accent);box-shadow:0 2px 8px rgba(184,134,11,.2)}
+
+    .nav-top{
+      display:flex;
+      gap:8px;
+      max-width:720px;
+      margin:0 auto;
+      min-width:min-content;
+    }
+
+    .nav-top-item{
+      flex:0 0 auto;
+      text-align:center;
+      font-size:13px;
+      font-weight:600;
+      color:var(--text-secondary);
+      padding:10px 20px;
+      border-radius:var(--radius-full);
+      cursor:pointer;
+      transition:all var(--transition);
+      -webkit-tap-highlight-color:transparent;
+      user-select:none;
+      letter-spacing:0.5px;
+      white-space:nowrap;
+      position:relative;
+    }
+
+    .nav-top-item:hover{
+      color:var(--accent-dark);
+      background:rgba(212,168,67,0.08);
+      transform:translateY(-1px);
+    }
+
+    .nav-top-item.active{
+      background:var(--accent-gradient);
+      color:#fff;
+      box-shadow:var(--shadow-accent);
+      transform:scale(1.02);
+    }
+
+    .nav-top-item:active{
+      transform:scale(0.96);
+    }
+
     /* ===== 子导航 ===== */
-    .nav-sub-wrap{position:fixed;top:108px;left:0;right:0;z-index:98;background:var(--bg);padding:0 12px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;border-bottom:1px solid rgba(184,134,11,.06)}
-    .nav-sub{display:flex;gap:0;max-width:640px;margin:0 auto;min-width:min-content}
-    .nav-sub-item{flex:0 0 auto;font-size:13px;font-weight:400;color:var(--tab-inactive);padding:6px 12px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;white-space:nowrap;opacity:.65;border-bottom:2px solid transparent}
-    .nav-sub-item.active{color:var(--accent);font-weight:600;opacity:1;border-bottom-color:var(--accent);background:none}
+    .nav-sub-wrap{
+      position:fixed;
+      top:123px;
+      left:0;
+      right:0;
+      z-index:99;
+      background:var(--bg);
+      padding:8px 12px 12px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .nav-sub{
+      display:flex;
+      gap:6px;
+      max-width:640px;
+      margin:0 auto;
+      min-width:min-content;
+    }
+
+    .nav-sub-item{
+      flex:0 0 auto;
+      font-size:12px;
+      font-weight:500;
+      color:var(--text-muted);
+      padding:8px 16px;
+      cursor:pointer;
+      transition:all var(--transition);
+      -webkit-tap-highlight-color:transparent;
+      user-select:none;
+      white-space:nowrap;
+      border-radius:var(--radius-full);
+      position:relative;
+    }
+
+    .nav-sub-item:hover{
+      color:var(--accent-dark);
+      background:rgba(212,168,67,0.08);
+    }
+
+    .nav-sub-item.active{
+      color:var(--accent-dark);
+      font-weight:600;
+      background:rgba(212,168,67,0.12);
+    }
+
     /* ===== 页面容器 ===== */
-    .page{display:none;max-width:640px;margin:0 auto;padding:0 16px 60px}
+    .page{
+      display:none;
+      max-width:640px;
+      margin:0 auto;
+      padding:0 20px 80px;
+      animation:fadeInUp 0.5s ease;
+    }
+
     .page.active{display:block}
-    .case-list{padding-top:18px}
-    .section-label{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:12px;border-left:3px solid var(--accent);padding-left:12px}
-    .case-card{background:var(--card-bg);border-radius:12px;overflow:hidden;box-shadow:0 2px 12px var(--shadow);margin-bottom:12px;cursor:pointer;transition:transform .15s;-webkit-tap-highlight-color:transparent}
-    .case-card:active{transform:scale(.97)}
-    .case-card-img{display:block;width:100%;height:170px;object-fit:cover;object-position:center 15%;background:#e8e2da}
-    .case-card-body{padding:10px 14px 12px}
-    .case-card-body h3{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:600}
-    .case-card-body .case-tag{display:inline-block;font-size:10px;font-weight:500;color:var(--accent);background:var(--tag-bg);padding:2px 10px;border-radius:10px;margin-bottom:3px}
-    .case-card-body p{font-size:12px;color:var(--text-muted);margin-top:2px;line-height:1.5}
-    .detail-header{display:flex;align-items:center;gap:8px;padding:14px 0}
-    .back-btn{font-size:13px;color:var(--accent);cursor:pointer;font-weight:500;-webkit-tap-highlight-color:transparent;user-select:none;padding:4px 0}
-    .back-btn::before{content:"\2190\00a0"}
-    .detail-header h2{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:600;color:var(--text)}
-    .process-gallery{display:flex;flex-direction:column;gap:22px}
-    .process-item{animation:fadeUp .5s both}
+
+    .case-list{padding-top:20px}
+
+    .section-label{
+      font-family:'Noto Serif SC',serif;
+      font-size:18px;
+      font-weight:600;
+      color:var(--text);
+      margin-bottom:16px;
+      padding-left:12px;
+      border-left:3px solid var(--accent);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .case-card{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      margin-bottom:16px;
+      cursor:pointer;
+      transition:all var(--transition);
+      -webkit-tap-highlight-color:transparent;
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    .case-card:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-lg);
+      background:var(--card-bg-hover);
+    }
+
+    .case-card:active{
+      transform:scale(0.98);
+    }
+
+    .case-card-img{
+      display:block;
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      object-position:center 15%;
+      background:linear-gradient(135deg,var(--bg-warm) 0%,var(--bg) 100%);
+      transition:transform var(--transition-slow);
+    }
+
+    .case-card:hover .case-card-img{
+      transform:scale(1.02);
+    }
+
+    .case-card-body{
+      padding:16px 18px 18px;
+    }
+
+    .case-card-body h3{
+      font-family:'Noto Serif SC',serif;
+      font-size:16px;
+      font-weight:600;
+      margin-bottom:6px;
+      color:var(--text);
+    }
+
+    .case-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:11px;
+      font-weight:600;
+      color:var(--accent-dark);
+      background:rgba(212,168,67,0.12);
+      padding:4px 10px;
+      border-radius:var(--radius-full);
+      margin-bottom:8px;
+    }
+
+    .case-card-body p{
+      font-size:13px;
+      color:var(--text-muted);
+      line-height:1.6;
+    }
+
+    .detail-header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:16px 0;
+      position:sticky;
+      top:178px;
+      background:var(--bg);
+      z-index:10;
+      margin-bottom:8px;
+    }
+
+    .back-btn{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:14px;
+      color:var(--accent-dark);
+      cursor:pointer;
+      font-weight:500;
+      padding:8px 12px;
+      border-radius:var(--radius-full);
+      background:rgba(212,168,67,0.08);
+      transition:all var(--transition);
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .back-btn:hover{
+      background:rgba(212,168,67,0.15);
+    }
+
+    .back-btn::before{
+      content:"←";
+      font-size:16px;
+      transition:transform var(--transition);
+    }
+
+    .back-btn:hover::before{
+      transform:translateX(-2px);
+    }
+
+    .detail-header h2{
+      font-family:'Noto Serif SC',serif;
+      font-size:17px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .process-gallery{
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+    }
+
+    .process-item{
+      animation:fadeInUp 0.6s both;
+    }
+
+    .process-item:nth-child(1){animation-delay:0.05s}
+    .process-item:nth-child(2){animation-delay:0.15s}
+    .process-item:nth-child(3){animation-delay:0.25s}
+    .process-item:nth-child(4){animation-delay:0.35s}
+
     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    .process-label{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:600;color:var(--accent);text-align:center;margin-bottom:8px;letter-spacing:1px;padding:5px 0;position:relative}
-    .process-label::after{content:'';display:block;width:32px;height:2px;background:var(--accent-lt);margin:5px auto 0;opacity:.4}
-    .process-label.is-first{font-size:15px;color:var(--text)}
-    .process-label.is-first::after{width:26px}
-    .step-card{background:var(--card-bg);border-radius:12px;overflow:hidden;box-shadow:0 2px 12px var(--shadow)}
-    .step-card img{display:block;width:100%;height:auto;background:#e8e2da}
-    .step-info{padding:10px 14px 12px}
-    .step-info .tag{display:inline-block;font-size:10px;font-weight:500;color:var(--accent);background:var(--tag-bg);padding:2px 10px;border-radius:10px;margin-bottom:3px}
-    .step-info h3{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:600;margin-bottom:2px}
-    .step-info p{font-size:12px;color:var(--text-muted);line-height:1.6}
-    .style-card{background:var(--card-bg);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px var(--shadow);margin-bottom:12px;cursor:pointer;transition:transform .15s;-webkit-tap-highlight-color:transparent}
-    .style-card:active{transform:scale(.97)}
-    .style-card-inner{padding:16px 16px 14px;display:flex;align-items:center;gap:12px}
-    .style-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+
+    .process-label{
+      font-family:'Noto Serif SC',serif;
+      font-size:14px;
+      font-weight:600;
+      color:var(--accent-dark);
+      text-align:center;
+      margin-bottom:10px;
+      letter-spacing:1px;
+      padding:8px 0;
+      position:relative;
+    }
+
+    .process-label::after{
+      content:'';
+      display:block;
+      width:40px;
+      height:3px;
+      background:var(--accent-gradient);
+      margin:8px auto 0;
+      border-radius:2px;
+      opacity:0.5;
+    }
+
+    .process-label.is-first{
+      font-size:16px;
+      color:var(--text);
+    }
+
+    .process-label.is-first::after{
+      width:32px;
+    }
+
+    .step-card{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(0,0,0,0.04);
+      transition:all var(--transition);
+    }
+
+    .step-card:hover{
+      box-shadow:var(--shadow-lg);
+    }
+
+    .step-card img{
+      display:block;
+      width:100%;
+      height:auto;
+      background:linear-gradient(135deg,var(--bg-warm) 0%,var(--bg) 100%);
+      transition:transform var(--transition-slow);
+    }
+
+    .step-card:hover img{
+      transform:scale(1.01);
+    }
+
+    .step-info{
+      padding:16px 18px 18px;
+    }
+
+    .step-info .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      font-size:11px;
+      font-weight:600;
+      color:var(--accent-dark);
+      background:rgba(212,168,67,0.12);
+      padding:4px 10px;
+      border-radius:var(--radius-full);
+      margin-bottom:8px;
+    }
+
+    .step-info h3{
+      font-family:'Noto Serif SC',serif;
+      font-size:15px;
+      font-weight:600;
+      margin-bottom:4px;
+      color:var(--text);
+    }
+
+    .step-info p{
+      font-size:13px;
+      color:var(--text-muted);
+      line-height:1.7;
+    }
+
+    .style-card{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      margin-bottom:16px;
+      cursor:pointer;
+      transition:all var(--transition);
+      -webkit-tap-highlight-color:transparent;
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    .style-card:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-lg);
+      background:var(--card-bg-hover);
+    }
+
+    .style-card:active{
+      transform:scale(0.98);
+    }
+
+    .style-card-inner{
+      padding:18px 18px 16px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .style-card-icon{
+      width:48px;
+      height:48px;
+      border-radius:var(--radius-sm);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      flex-shrink:0;
+      font-family:'Noto Serif SC',serif;
+      font-weight:700;
+      transition:transform var(--transition);
+    }
+
+    .style-card:hover .style-card-icon{
+      transform:scale(1.05) rotate(3deg);
+    }
+
     .style-card-info{flex:1}
-    .style-card-info h3{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:600}
-    .style-card-info .style-desc{font-size:11px;color:var(--text-muted);margin-top:1px}
-    .style-card-arrow{font-size:16px;color:var(--text-muted);flex-shrink:0}
-    .sub-card-list{display:flex;flex-direction:column;gap:14px;padding-top:4px}
-    .sub-card-item{background:var(--card-bg);border-radius:12px;overflow:hidden;box-shadow:0 2px 10px var(--shadow);cursor:pointer;transition:transform .15s;-webkit-tap-highlight-color:transparent}
-    .sub-card-item:active{transform:scale(.98)}
-    .sub-card-item img{display:block;width:100%;height:auto;background:#e8e2da}
-    .sub-card-item .sub-card-body{padding:8px 14px 10px}
-    .sub-card-item .sub-card-body h4{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:600}
-    .sub-card-item .sub-card-body p{font-size:11px;color:var(--text-muted);margin-top:1px}
-    .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center}
-    .placeholder .icon{font-size:48px;margin-bottom:12px;opacity:.5}
-    .placeholder h2{font-size:18px;font-weight:600;margin-bottom:6px}
-    .placeholder p{font-size:14px;color:var(--text-muted)}
+
+    .style-card-info h3{
+      font-family:'Noto Serif SC',serif;
+      font-size:16px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .style-card-info .style-desc{
+      font-size:12px;
+      color:var(--text-muted);
+      margin-top:2px;
+    }
+
+    .style-card-arrow{
+      font-size:20px;
+      color:var(--text-muted);
+      flex-shrink:0;
+      transition:all var(--transition);
+    }
+
+    .style-card:hover .style-card-arrow{
+      color:var(--accent-dark);
+      transform:translateX(4px);
+    }
+
+    .sub-card-list{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      padding-top:4px;
+    }
+
+    .sub-card-item{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      cursor:pointer;
+      transition:all var(--transition);
+      -webkit-tap-highlight-color:transparent;
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    .sub-card-item:hover{
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-lg);
+    }
+
+    .sub-card-item:active{
+      transform:scale(0.98);
+    }
+
+    .sub-card-item img{
+      display:block;
+      width:100%;
+      height:auto;
+      background:linear-gradient(135deg,var(--bg-warm) 0%,var(--bg) 100%);
+      transition:transform var(--transition-slow);
+    }
+
+    .sub-card-item:hover img{
+      transform:scale(1.02);
+    }
+
+    .sub-card-item .sub-card-body{
+      padding:12px 16px 14px;
+    }
+
+    .sub-card-item .sub-card-body h4{
+      font-family:'Noto Serif SC',serif;
+      font-size:15px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .sub-card-item .sub-card-body p{
+      font-size:12px;
+      color:var(--text-muted);
+      margin-top:3px;
+      line-height:1.5;
+    }
+
+    .placeholder{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:80px 24px;
+      text-align:center;
+      min-height:50vh;
+    }
+
+    .placeholder .icon{
+      font-size:48px;
+      margin-bottom:20px;
+      opacity:0.6;
+      animation:float 3s ease-in-out infinite;
+    }
+
+    .placeholder h2{
+      font-size:20px;
+      font-weight:600;
+      margin-bottom:10px;
+      color:var(--text);
+    }
+
+    .placeholder p{
+      font-size:14px;
+      color:var(--text-muted);
+      line-height:1.7;
+    }
+
+    /* ===== 动画 ===== */
+    @keyframes fadeInDown{
+      from{
+        opacity:0;
+        transform:translateY(-20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-10px);
+      }
+    }
+
+    /* ===== 响应式 ===== */
     @media(min-width:768px){
-      .page{max-width:580px}
-      .case-card{display:flex;height:auto}
-      .case-card-img{width:200px;height:140px;flex-shrink:0;object-position:center 20%}
-      .case-card-body{flex:1;display:flex;flex-direction:column;justify-content:center}
+      .page{max-width:680px}
+      
+      .case-card{
+        display:flex;
+        height:auto;
+      }
+      
+      .case-card-img{
+        width:240px;
+        height:160px;
+        flex-shrink:0;
+        object-position:center 20%;
+      }
+      
+      .case-card-body{
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+      }
+      
       .nav-top-scroll{display:flex;justify-content:center;overflow-x:hidden}
       .nav-top{display:flex;justify-content:center}
       .nav-sub{justify-content:center}
+      
       .sub-card-item{display:flex}
       .sub-card-item img{width:200px;flex-shrink:0}
-      .sub-card-item .sub-card-body{flex:1;display:flex;flex-direction:column;justify-content:center}
+      .sub-card-item .sub-card-body{
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+      }
     }
   </style>
 </head>
@@ -132,7 +728,7 @@
           <p>从泛黄旧照到高清风光，4 步看 AI 如何让风景老照片重现生机。</p>
         </div>
       </div>
-      <div class="case-card" style="opacity:.5;cursor:default"><div class="case-card-body" style="padding:40px 20px;text-align:center"><h3 style="color:var(--text-muted);">案例三</h3><p style="margin-top:4px">即将上线，敬请期待</p></div></div>
+      <div class="case-card" style="opacity:.6;cursor:default"><div class="case-card-body" style="padding:48px 24px;text-align:center"><h3 style="color:var(--text-muted);margin-bottom:8px">案例三</h3><p style="margin-top:4px">即将上线，敬请期待</p></div></div>
     </div>
   </div>
 
@@ -141,21 +737,21 @@
       <div class="section-label">文字卡片</div>
       <div class="style-card" onclick="openStyle('style-1')">
         <div class="style-card-inner">
-          <div class="style-card-icon" style="background:#e8dcd0;color:#6b3a2a">雅</div>
+          <div class="style-card-icon" style="background:linear-gradient(135deg,#e8dcd0,#d4c4b0);color:#6b3a2a">雅</div>
           <div class="style-card-info"><h3>国风雅集</h3><div class="style-desc">朱墨金笺 · 翠金雅韵 · 墨韵禅心 · 5 张</div></div>
           <div class="style-card-arrow">›</div>
         </div>
       </div>
       <div class="style-card" onclick="openStyle('style-2')">
         <div class="style-card-inner">
-          <div class="style-card-icon" style="background:#dce8e4;color:#2a5a5a">山</div>
+          <div class="style-card-icon" style="background:linear-gradient(135deg,#dce8e4,#b8d4c8);color:#2a5a5a">山</div>
           <div class="style-card-info"><h3>山水清音</h3><div class="style-desc">山水意境 · 1 张</div></div>
           <div class="style-card-arrow">›</div>
         </div>
       </div>
       <div class="style-card" onclick="openStyle('style-3')">
         <div class="style-card-inner">
-          <div class="style-card-icon" style="background:#efe8dc;color:#7a5a3a">静</div>
+          <div class="style-card-icon" style="background:linear-gradient(135deg,#efe8dc,#e0d4c0);color:#7a5a3a">静</div>
           <div class="style-card-info"><h3>静心花语</h3><div class="style-desc">白茶 · 竹林 · 水彩 · 3 张</div></div>
           <div class="style-card-arrow">›</div>
         </div>
@@ -173,34 +769,34 @@
   <!-- 风格详情 -->
   <div class="page" id="page-style-1">
     <div class="detail-header"><span class="back-btn" onclick="closeStyle()">返回</span><h2>国风雅集</h2></div>
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">朱墨金笺 · 翠金雅韵 · 墨韵禅心</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">朱墨金笺 · 翠金雅韵 · 墨韵禅心</p>
     <div class="sub-card-list">
       <div class="sub-card-item" onclick="openCardDetail('card-1')">
         <img src="images/card_1.png" alt="稳步而行" loading="lazy">
-        <div class="sub-card-body"><h4>稳步而行 <span style="font-size:10px;color:var(--text-muted);font-weight:400">· 朱墨金笺</span></h4><p>花开有早晚，行路有快慢。稳住脚步慢慢走，行得安稳。</p></div>
+        <div class="sub-card-body"><h4>稳步而行 <span style="font-size:11px;color:var(--text-muted);font-weight:400">· 朱墨金笺</span></h4><p>花开有早晚，行路有快慢。稳住脚步慢慢走，行得安稳。</p></div>
       </div>
       <div class="sub-card-item" onclick="openCardDetail('card-2')">
         <img src="images/card_2.png" alt="穿上铠甲去战斗" loading="lazy">
-        <div class="sub-card-body"><h4>穿上铠甲去战斗 <span style="font-size:10px;color:var(--text-muted);font-weight:400">· 翠金雅韵</span></h4><p>早上出门前，记得对自己说一声：我是最棒的。然后穿上铠甲，出门战斗厮杀吧。</p></div>
+        <div class="sub-card-body"><h4>穿上铠甲去战斗 <span style="font-size:11px;color:var(--text-muted);font-weight:400">· 翠金雅韵</span></h4><p>早上出门前，记得对自己说一声：我是最棒的。然后穿上铠甲，出门战斗厮杀吧。</p></div>
       </div>
       <div class="sub-card-item" onclick="openCardDetail('card-4')">
         <img src="images/card_4.jpg" alt="放下攀比，去看世界" loading="lazy">
-        <div class="sub-card-body"><h4>放下攀比，去看世界 <span style="font-size:10px;color:var(--text-muted);font-weight:400">· 翠金雅韵</span></h4><p>尺有所短寸有所长，不去事事都攀比。心态顺畅身体好，省下药钱旅游去。</p></div>
+        <div class="sub-card-body"><h4>放下攀比，去看世界 <span style="font-size:11px;color:var(--text-muted);font-weight:400">· 翠金雅韵</span></h4><p>尺有所短寸有所长，不去事事都攀比。心态顺畅身体好，省下药钱旅游去。</p></div>
       </div>
       <div class="sub-card-item" onclick="openCardDetail('card-3')">
         <img src="images/card_3.png" alt="改变自己" loading="lazy">
-        <div class="sub-card-body"><h4>改变自己 <span style="font-size:10px;color:var(--text-muted);font-weight:400">· 墨韵禅心</span></h4><p>不要活在别人眼中，更不要活在别人嘴中。你能做到的，只有改变你自己。</p></div>
+        <div class="sub-card-body"><h4>改变自己 <span style="font-size:11px;color:var(--text-muted);font-weight:400">· 墨韵禅心</span></h4><p>不要活在别人眼中，更不要活在别人嘴中。你能做到的，只有改变你自己。</p></div>
       </div>
       <div class="sub-card-item" onclick="openCardDetail('card-5')">
         <img src="images/card_5.jpg" alt="出来混最重要的是什么？" loading="lazy">
-        <div class="sub-card-body"><h4>出来混最重要的是什么？ <span style="font-size:10px;color:var(--text-muted);font-weight:400">· 墨韵禅心</span></h4><p>出来混最重要的是什么？是出来！踏上取经路，比抵达灵山更重要。</p></div>
+        <div class="sub-card-body"><h4>出来混最重要的是什么？ <span style="font-size:11px;color:var(--text-muted);font-weight:400">· 墨韵禅心</span></h4><p>出来混最重要的是什么？是出来！踏上取经路，比抵达灵山更重要。</p></div>
       </div>
     </div>
   </div>
 
   <div class="page" id="page-style-2">
     <div class="detail-header"><span class="back-btn" onclick="closeStyle()">返回</span><h2>山水清音</h2></div>
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">山水意境 · 澄澈明心</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">山水意境 · 澄澈明心</p>
     <div class="sub-card-list">
       <div class="sub-card-item" onclick="openCardDetail('card-6')">
         <img src="images/card_6.jpg" alt="心灯" loading="lazy">
@@ -211,52 +807,52 @@
 
   <div class="page" id="page-style-3">
     <div class="detail-header"><span class="back-btn" onclick="closeStyle()">返回</span><h2>静心花语</h2></div>
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">白茶 · 竹林 · 水彩 · 自然疗愈</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">白茶 · 竹林 · 水彩 · 自然疗愈</p>
     <div class="sub-card-list">
       <div class="sub-card-item" onclick="openCardDetail('card-7')">
         <img src="images/card_7.jpg" alt="去做" loading="lazy">
-        <div class="sub-card-body"><h4>去做 <span style="font-size:10px;color:var(--text-muted);font-weight:400">· 白茶山景</span></h4><p>你做什么都不会白做，你尽管去干就好了。就怕你太在乎自己那一文不值的面子。</p></div>
+        <div class="sub-card-body"><h4>去做 <span style="font-size:11px;color:var(--text-muted);font-weight:400">· 白茶山景</span></h4><p>你做什么都不会白做，你尽管去干就好了。就怕你太在乎自己那一文不值的面子。</p></div>
       </div>
       <div class="sub-card-item" onclick="openCardDetail('card-8')">
         <img src="images/card_8.jpg" alt="沉淀自己" loading="lazy">
-        <div class="sub-card-body"><h4>沉淀自己 <span style="font-size:10px;color:var(--text-muted);font-weight:400">· 竹林庭院</span></h4><p>沉淀自己最好的方式就是在繁华中自律，安静处自省，低谷时自强。</p></div>
+        <div class="sub-card-body"><h4>沉淀自己 <span style="font-size:11px;color:var(--text-muted);font-weight:400">· 竹林庭院</span></h4><p>沉淀自己最好的方式就是在繁华中自律，安静处自省，低谷时自强。</p></div>
       </div>
       <div class="sub-card-item" onclick="openCardDetail('card-9')">
         <img src="images/card_9.jpg" alt="了不起的自己" loading="lazy">
-        <div class="sub-card-body"><h4>了不起的自己 <span style="font-size:10px;color:var(--text-muted);font-weight:400">· 水彩山水</span></h4><p>活着就要遇山开山，见水架桥。一直陪着你的，永远都是那个了不起的自己。</p></div>
+        <div class="sub-card-body"><h4>了不起的自己 <span style="font-size:11px;color:var(--text-muted);font-weight:400">· 水彩山水</span></h4><p>活着就要遇山开山，见水架桥。一直陪着你的，永远都是那个了不起的自己。</p></div>
       </div>
     </div>
   </div>
 
   <!-- 卡片详情 -->
-  <div class="page" id="page-card-1"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>稳步而行</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">朱墨金笺 · 稳步而行</div><div class="step-card"><img src="images/card_1.png" alt="稳步而行" loading="lazy"><div class="step-info"><span class="tag">绛红金线风</span><h3>稳步而行</h3><p>花开有早晚<br>行路有快慢<br>稳住脚步慢慢走<br>才不会半路跌倒<br>沉下心慢慢来<br>才能走得长久<br>行得安稳</p></div></div></div></div></div>
-  <div class="page" id="page-card-2"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>穿上铠甲去战斗</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">翠金雅韵 · 穿上铠甲去战斗</div><div class="step-card"><img src="images/card_2.png" alt="穿上铠甲去战斗" loading="lazy"><div class="step-info"><span class="tag">绿金国潮风</span><h3>穿上铠甲去战斗</h3><p>无论是上班或上学<br>早上出门前<br>记得对自己说一声<br>我是最棒的<br>然后穿上铠甲<br>出门战斗厮杀吧</p><p style="font-size:12px;color:var(--text-muted);margin-top:6px">—— 朱德庸</p></div></div></div></div></div>
-  <div class="page" id="page-card-3"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>改变自己</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">墨韵禅心 · 改变自己</div><div class="step-card"><img src="images/card_3.png" alt="改变自己" loading="lazy"><div class="step-info"><span class="tag">水墨意境风</span><h3>改变自己</h3><p>不要活在别人眼中<br>更不要活在别人嘴中<br>世界不会因为你的抱怨不满<br>而为你改变<br>你能做到的<br>只有改变你自己</p></div></div></div></div></div>
-  <div class="page" id="page-card-4"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>放下攀比，去看世界</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">翠金雅韵 · 放下攀比，去看世界</div><div class="step-card"><img src="images/card_4.jpg" alt="放下攀比，去看世界" loading="lazy"><div class="step-info"><span class="tag">绿金国潮风</span><h3>放下攀比，去看世界</h3><p>尺有所短寸有所长<br>不去事事都攀比<br>人间美景未看全<br>哪有工夫生闲气<br>心态顺畅身体好<br>省下药钱旅游去</p></div></div></div></div></div>
-  <div class="page" id="page-card-5"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>出来混最重要的是什么？</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">墨韵禅心 · 出来混最重要的是什么？</div><div class="step-card"><img src="images/card_5.jpg" alt="出来混最重要的是什么？" loading="lazy"><div class="step-info"><span class="tag">国潮水墨风</span><h3>出来混最重要的是什么？</h3><p>出来混最重要的是什么？<br>是出来！<br><br>踏上取经路<br>比抵达灵山更重要</p></div></div></div></div></div>
-  <div class="page" id="page-card-6"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>心灯</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">山水清音 · 心灯</div><div class="step-card"><img src="images/card_6.jpg" alt="心灯" loading="lazy"><div class="step-info"><span class="tag">山水意境风</span><h3>心灯</h3><p>心灯不借他人火<br>自照乾坤步步明<br>志在青云终不坠<br>身经风雨亦难倾</p></div></div></div></div></div>
-  <div class="page" id="page-card-7"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>去做</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">静心花语 · 去做</div><div class="step-card"><img src="images/card_7.jpg" alt="去做" loading="lazy"><div class="step-info"><span class="tag">山景白茶风</span><h3>去做</h3><p>你做什么都不会白做<br>你尽管去干就好了<br>就怕你太在乎自己那一文不值的面子<br>犹豫不决患得患失</p></div></div></div></div></div>
-  <div class="page" id="page-card-8"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>沉淀自己</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">静心花语 · 沉淀自己</div><div class="step-card"><img src="images/card_8.jpg" alt="沉淀自己" loading="lazy"><div class="step-info"><span class="tag">竹林庭院风</span><h3>沉淀自己</h3><p>沉淀自己最好的方式<br>就是在繁华中自律<br>安静处自省<br>低谷时自强</p></div></div></div></div></div>
-  <div class="page" id="page-card-9"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>了不起的自己</h2></div><div class="process-gallery"><div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">静心花语 · 了不起的自己</div><div class="step-card"><img src="images/card_9.jpg" alt="了不起的自己" loading="lazy"><div class="step-info"><span class="tag">水彩山水风</span><h3>了不起的自己</h3><p>活着就要遇山开山<br>见水架桥<br><br>其实一直陪着你的<br>永远都是那个了不起的自己</p></div></div></div></div></div>
+  <div class="page" id="page-card-1"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>稳步而行</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">朱墨金笺 · 稳步而行</div><div class="step-card"><img src="images/card_1.png" alt="稳步而行" loading="lazy"><div class="step-info"><span class="tag">绛红金线风</span><h3>稳步而行</h3><p>花开有早晚<br>行路有快慢<br>稳住脚步慢慢走<br>才不会半路跌倒<br>沉下心慢慢来<br>才能走得长久<br>行得安稳</p></div></div></div></div></div>
+  <div class="page" id="page-card-2"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>穿上铠甲去战斗</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">翠金雅韵 · 穿上铠甲去战斗</div><div class="step-card"><img src="images/card_2.png" alt="穿上铠甲去战斗" loading="lazy"><div class="step-info"><span class="tag">绿金国潮风</span><h3>穿上铠甲去战斗</h3><p>无论是上班或上学<br>早上出门前<br>记得对自己说一声<br>我是最棒的<br>然后穿上铠甲<br>出门战斗厮杀吧</p><p style="font-size:12px;color:var(--text-muted);margin-top:6px">—— 朱德庸</p></div></div></div></div></div>
+  <div class="page" id="page-card-3"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>改变自己</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">墨韵禅心 · 改变自己</div><div class="step-card"><img src="images/card_3.png" alt="改变自己" loading="lazy"><div class="step-info"><span class="tag">水墨意境风</span><h3>改变自己</h3><p>不要活在别人眼中<br>更不要活在别人嘴中<br>世界不会因为你的抱怨不满<br>而为你改变<br>你能做到的<br>只有改变你自己</p></div></div></div></div></div>
+  <div class="page" id="page-card-4"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>放下攀比，去看世界</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">翠金雅韵 · 放下攀比，去看世界</div><div class="step-card"><img src="images/card_4.jpg" alt="放下攀比，去看世界" loading="lazy"><div class="step-info"><span class="tag">绿金国潮风</span><h3>放下攀比，去看世界</h3><p>尺有所短寸有所长<br>不去事事都攀比<br>人间美景未看全<br>哪有工夫生闲气<br>心态顺畅身体好<br>省下药钱旅游去</p></div></div></div></div></div>
+  <div class="page" id="page-card-5"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>出来混最重要的是什么？</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">墨韵禅心 · 出来混最重要的是什么？</div><div class="step-card"><img src="images/card_5.jpg" alt="出来混最重要的是什么？" loading="lazy"><div class="step-info"><span class="tag">国潮水墨风</span><h3>出来混最重要的是什么？</h3><p>出来混最重要的是什么？<br>是出来！<br><br>踏上取经路<br>比抵达灵山更重要</p></div></div></div></div></div>
+  <div class="page" id="page-card-6"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>心灯</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">山水清音 · 心灯</div><div class="step-card"><img src="images/card_6.jpg" alt="心灯" loading="lazy"><div class="step-info"><span class="tag">山水意境风</span><h3>心灯</h3><p>心灯不借他人火<br>自照乾坤步步明<br>志在青云终不坠<br>身经风雨亦难倾</p></div></div></div></div></div>
+  <div class="page" id="page-card-7"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>去做</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">静心花语 · 去做</div><div class="step-card"><img src="images/card_7.jpg" alt="去做" loading="lazy"><div class="step-info"><span class="tag">山景白茶风</span><h3>去做</h3><p>你做什么都不会白做<br>你尽管去干就好了<br>就怕你太在乎自己那一文不值的面子<br>犹豫不决患得患失</p></div></div></div></div></div>
+  <div class="page" id="page-card-8"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>沉淀自己</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">静心花语 · 沉淀自己</div><div class="step-card"><img src="images/card_8.jpg" alt="沉淀自己" loading="lazy"><div class="step-info"><span class="tag">竹林庭院风</span><h3>沉淀自己</h3><p>沉淀自己最好的方式<br>就是在繁华中自律<br>安静处自省<br>低谷时自强</p></div></div></div></div></div>
+  <div class="page" id="page-card-9"><div class="detail-header"><span class="back-btn" onclick="goBackFromCard()">返回</span><h2>了不起的自己</h2></div><div class="process-gallery"><div class="process-item"><div class="process-label is-first">静心花语 · 了不起的自己</div><div class="step-card"><img src="images/card_9.jpg" alt="了不起的自己" loading="lazy"><div class="step-info"><span class="tag">水彩山水风</span><h3>了不起的自己</h3><p>活着就要遇山开山<br>见水架桥<br><br>其实一直陪着你的<br>永远都是那个了不起的自己</p></div></div></div></div></div>
 
   <!-- 老照片案例详情 -->
   <div class="page" id="page-case-1">
     <div class="detail-header"><span class="back-btn" onclick="closeCase()">返回</span><h2>案例一：老照片修复</h2></div>
     <div class="process-gallery">
-      <div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">原片</div><div class="step-card"><img src="images/photo_1.1.jpg" alt="照片修复 1.1" loading="lazy"><div class="step-info"><span class="tag">原始底片</span><p>泛黄、褪色、布满裂纹的原始老照片，岁月的痕迹清晰可见。</p></div></div></div>
-      <div class="process-item" style="animation-delay:.15s"><div class="process-label">AI 智能去噪 · 划痕修复 · 对比度优化</div><div class="step-card"><img src="images/photo_1.2.jpg" alt="照片修复 1.2" loading="lazy"><div class="step-info"><span class="tag">修复还原</span><p>AI 去除裂纹与污渍，还原清晰的黑白影像，人物轮廓更加分明。</p></div></div></div>
-      <div class="process-item" style="animation-delay:.25s"><div class="process-label">AI 智能上色 · 色彩还原 · 氛围调校</div><div class="step-card"><img src="images/photo_1.3.jpg" alt="照片修复 1.3" loading="lazy"><div class="step-info"><span class="tag">色彩重生</span><p>AI 为黑白照片赋予色彩——温暖肤色、青蓝衣衫，旧时光有了温度。</p></div></div></div>
-      <div class="process-item" style="animation-delay:.35s"><div class="process-label">AI 高清增强 · 风格迁移 · 妆造美化</div><div class="step-card"><img src="images/photo_1.4.jpg" alt="照片修复 1.4" loading="lazy"><div class="step-info"><span class="tag">写真焕新</span><p>现代写真风格重塑——高清画质、精致妆造，老照片里的人焕然一新。</p></div></div></div>
+      <div class="process-item"><div class="process-label is-first">原片</div><div class="step-card"><img src="images/photo_1.1.jpg" alt="照片修复 1.1" loading="lazy"><div class="step-info"><span class="tag">原始底片</span><p>泛黄、褪色、布满裂纹的原始老照片，岁月的痕迹清晰可见。</p></div></div></div>
+      <div class="process-item"><div class="process-label">AI 智能去噪 · 划痕修复 · 对比度优化</div><div class="step-card"><img src="images/photo_1.2.jpg" alt="照片修复 1.2" loading="lazy"><div class="step-info"><span class="tag">修复还原</span><p>AI 去除裂纹与污渍，还原清晰的黑白影像，人物轮廓更加分明。</p></div></div></div>
+      <div class="process-item"><div class="process-label">AI 智能上色 · 色彩还原 · 氛围调校</div><div class="step-card"><img src="images/photo_1.3.jpg" alt="照片修复 1.3" loading="lazy"><div class="step-info"><span class="tag">色彩重生</span><p>AI 为黑白照片赋予色彩——温暖肤色、青蓝衣衫，旧时光有了温度。</p></div></div></div>
+      <div class="process-item"><div class="process-label">AI 高清增强 · 风格迁移 · 妆造美化</div><div class="step-card"><img src="images/photo_1.4.jpg" alt="照片修复 1.4" loading="lazy"><div class="step-info"><span class="tag">写真焕新</span><p>现代写真风格重塑——高清画质、精致妆造，老照片里的人焕然一新。</p></div></div></div>
     </div>
   </div>
 
   <div class="page" id="page-case-2">
     <div class="detail-header"><span class="back-btn" onclick="closeCase()">返回</span><h2>案例二：风景老照片修复</h2></div>
     <div class="process-gallery">
-      <div class="process-item" style="animation-delay:.05s"><div class="process-label is-first">原片</div><div class="step-card"><img src="images/photo_2.1.jpg" alt="原片" loading="lazy"><div class="step-info"><span class="tag">原始照片</span><p>泛黄褪色的风景老照片，画面模糊，色彩暗淡。</p></div></div></div>
-      <div class="process-item" style="animation-delay:.15s"><div class="process-label">AI 修复增强</div><div class="step-card"><img src="images/photo_2.2.jpg" alt="修复版" loading="lazy"><div class="step-info"><span class="tag">修复还原</span><p>AI 去除噪点与模糊，画面清晰度大幅提升。</p></div></div></div>
-      <div class="process-item" style="animation-delay:.25s"><div class="process-label">AI 色彩还原</div><div class="step-card"><img src="images/photo_2.3.jpg" alt="上色版" loading="lazy"><div class="step-info"><span class="tag">色彩重生</span><p>AI 智能上色——蓝天碧水、绿树青山，旧风景有了温度。</p></div></div></div>
-      <div class="process-item" style="animation-delay:.35s"><div class="process-label">AI 高清优化</div><div class="step-card"><img src="images/photo_2.4.jpg" alt="高清版" loading="lazy"><div class="step-info"><span class="tag">高清优化</span><p>高清增强处理，色彩鲜明、细节丰富，宛如实景拍摄。</p></div></div></div>
+      <div class="process-item"><div class="process-label is-first">原片</div><div class="step-card"><img src="images/photo_2.1.jpg" alt="原片" loading="lazy"><div class="step-info"><span class="tag">原始照片</span><p>泛黄褪色的风景老照片，画面模糊，色彩暗淡。</p></div></div></div>
+      <div class="process-item"><div class="process-label">AI 修复增强</div><div class="step-card"><img src="images/photo_2.2.jpg" alt="修复版" loading="lazy"><div class="step-info"><span class="tag">修复还原</span><p>AI 去除噪点与模糊，画面清晰度大幅提升。</p></div></div></div>
+      <div class="process-item"><div class="process-label">AI 色彩还原</div><div class="step-card"><img src="images/photo_2.3.jpg" alt="上色版" loading="lazy"><div class="step-info"><span class="tag">色彩重生</span><p>AI 智能上色——蓝天碧水、绿树青山，旧风景有了温度。</p></div></div></div>
+      <div class="process-item"><div class="process-label">AI 高清优化</div><div class="step-card"><img src="images/photo_2.4.jpg" alt="高清版" loading="lazy"><div class="step-info"><span class="tag">高清优化</span><p>高清增强处理，色彩鲜明、细节丰富，宛如实景拍摄。</p></div></div></div>
     </div>
   </div>
 
