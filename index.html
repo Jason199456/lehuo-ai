@@ -15,9 +15,9 @@
     .app-header h1{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--accent);letter-spacing:4px}
     .app-header p{font-size:10px;color:var(--text-muted);letter-spacing:2px;margin-top:0}
     /* ===== 顶层导航 ===== */
-    .nav-top-wrap{position:fixed;top:52px;left:0;right:0;z-index:99;background:var(--bg);padding:4px 8px 2px;border-bottom:1px solid rgba(184,134,11,.08)}
-    .nav-top{display:flex;gap:2px;max-width:100%}
-    .nav-top-item{flex:1;text-align:center;font-size:12px;font-weight:600;color:var(--tab-inactive);padding:7px 4px;border-radius:8px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;letter-spacing:.3px;white-space:nowrap;max-width:90px}
+    .nav-top-wrap{position:fixed;top:52px;left:0;right:0;z-index:99;background:var(--bg);padding:4px 6px 3px;border-bottom:1px solid rgba(184,134,11,.08)}
+    .nav-top{display:flex;gap:3px;max-width:100%}
+    .nav-top-item{flex:1;text-align:center;font-size:11px;font-weight:600;color:var(--tab-inactive);padding:7px 2px;border-radius:8px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;letter-spacing:.3px;white-space:nowrap}
     .nav-top-item.active{color:#fff;background:var(--accent);box-shadow:0 2px 8px rgba(184,134,11,.2)}
     .nav-top-item .count{font-size:10px;opacity:.7;margin-left:2px}
     /* ===== 子导航 ===== */
@@ -25,7 +25,6 @@
     .nav-sub{display:flex;gap:0;max-width:640px;margin:0 auto;min-width:min-content}
     .nav-sub-item{flex:0 0 auto;font-size:11px;font-weight:400;color:var(--tab-inactive);padding:6px 12px;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent;user-select:none;white-space:nowrap;opacity:.65;border-bottom:2px solid transparent}
     .nav-sub-item.active{color:var(--accent);font-weight:600;opacity:1;border-bottom-color:var(--accent);background:none}
-    body{padding-top:140px}
     /* ===== 页面容器 ===== */
     .page{display:none;max-width:640px;margin:0 auto;padding:0 16px 60px}
     .page.active{display:block}
@@ -93,12 +92,12 @@
   <!-- 顶层导航：6 个主导航 -->
   <div class="nav-top-wrap">
     <div class="nav-top">
-      <div class="nav-top-item" data-group="home">🏠 首页</div>
-      <div class="nav-top-item active" data-group="visual">📷 影像创作</div>
-      <div class="nav-top-item" data-group="text">🖋️ 文字创作</div>
-      <div class="nav-top-item" data-group="office">📋 AI办公</div>
-      <div class="nav-top-item" data-group="practice">⚙️ AI实践集</div>
-      <div class="nav-top-item" data-group="more">📚 更多</div>
+      <div class="nav-top-item" data-group="home">首页</div>
+      <div class="nav-top-item active" data-group="visual">影像创作</div>
+      <div class="nav-top-item" data-group="text">文字创作</div>
+      <div class="nav-top-item" data-group="office">AI办公</div>
+      <div class="nav-top-item" data-group="practice">AI实践集</div>
+      <div class="nav-top-item" data-group="more">更多</div>
     </div>
   </div>
 
