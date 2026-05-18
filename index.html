@@ -59,7 +59,7 @@
       color:var(--text);
       line-height:1.6;
       min-height:100vh;
-      padding-top:316px;
+      padding-top:280px;
       transition:background-color var(--transition);
     }
 
@@ -71,7 +71,7 @@
       right:0;
       z-index:100;
       background:rgba(250,248,245,0.95);
-      padding:14px 20px 6px;
+      padding:6px 20px 2px;
       text-align:center;
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
@@ -93,26 +93,26 @@
       font-size:11px;
       color:var(--accent-dark);
       letter-spacing:2px;
-      margin-top:4px;
+      margin-top:2px;
       animation:fadeInDown 0.6s ease 0.1s both;
     }
 
     /* ===== 顶层导航 ===== */
     .nav-top-wrap{
       position:fixed;
-      top:194px;
+      top:177px;
       left:0;
       right:0;
       z-index:99;
       background:var(--bg);
-      padding:8px 0;
+      padding:4px 0;
     }
 
     .nav-top-scroll{
       overflow-x:auto;
       -webkit-overflow-scrolling:touch;
       scrollbar-width:none;
-      padding:12px 16px;
+      padding:8px 16px;
     }
 
     .nav-top-scroll::-webkit-scrollbar{display:none}
@@ -131,7 +131,7 @@
       font-size:13px;
       font-weight:600;
       color:var(--text-secondary);
-      padding:10px 20px;
+      padding:8px 20px;
       border-radius:var(--radius-full);
       cursor:pointer;
       transition:all var(--transition);
@@ -162,12 +162,12 @@
     /* ===== 子导航 ===== */
     .nav-sub-wrap{
       position:fixed;
-      top:263px;
+      top:235px;
       left:0;
       right:0;
       z-index:99;
       background:var(--bg);
-      padding:8px 12px 12px;
+      padding:6px 12px 8px;
       overflow-x:auto;
       -webkit-overflow-scrolling:touch;
     }
@@ -185,7 +185,7 @@
       font-size:12px;
       font-weight:500;
       color:var(--text-muted);
-      padding:8px 16px;
+      padding:6px 12px;
       cursor:pointer;
       transition:all var(--transition);
       -webkit-tap-highlight-color:transparent;
@@ -305,7 +305,7 @@
       gap:12px;
       padding:16px 0;
       position:sticky;
-      top:316px;
+      top:280px;
       background:var(--bg);
       z-index:10;
       margin-bottom:8px;
@@ -656,12 +656,12 @@
 
     /* ===== 响应式 ===== */
     @media(max-width:640px){
-      .app-header .app-logo{height:88px;filter:drop-shadow(0 2px 10px rgba(212,168,67,0.2))}
-      .app-header{padding:8px 12px 4px}
-      body{padding-top:238px}
-      .nav-top-wrap{top:123px}
-      .nav-sub-wrap{top:187px}
-      .detail-nav{top:238px}
+      .app-header .app-logo{height:56px;filter:drop-shadow(0 2px 10px rgba(212,168,67,0.2))}
+      .app-header{padding:6px 12px 3px}
+      body{padding-top:172px}
+      .nav-top-wrap{top:82px}
+      .nav-sub-wrap{top:132px}
+      .detail-nav{top:172px}
     }
 
     @media(min-width:768px){
