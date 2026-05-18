@@ -59,7 +59,7 @@
       color:var(--text);
       line-height:1.6;
       min-height:100vh;
-      padding-top:179px;
+      padding-top:303px;
       transition:background-color var(--transition);
     }
 
@@ -79,7 +79,7 @@
     }
 
     .app-header .app-logo{
-      height:28px;
+      height:140px;
       width:auto;
       display:block;
       margin:0 auto;
@@ -97,7 +97,7 @@
     /* ===== 顶层导航 ===== */
     .nav-top-wrap{
       position:fixed;
-      top:56px;
+      top:180px;
       left:0;
       right:0;
       z-index:99;
@@ -159,7 +159,7 @@
     /* ===== 子导航 ===== */
     .nav-sub-wrap{
       position:fixed;
-      top:123px;
+      top:247px;
       left:0;
       right:0;
       z-index:99;
@@ -302,7 +302,7 @@
       gap:12px;
       padding:16px 0;
       position:sticky;
-      top:178px;
+      top:303px;
       background:var(--bg);
       z-index:10;
       margin-bottom:8px;
@@ -643,6 +643,15 @@
     }
 
     /* ===== 响应式 ===== */
+    @media(max-width:640px){
+      .app-header .app-logo{height:80px}
+      .app-header{padding:8px 16px 6px}
+      body{padding-top:220px}
+      .nav-top-wrap{top:135px}
+      .nav-sub-wrap{top:200px}
+      .detail-nav{top:220px}
+    }
+
     @media(min-width:768px){
       .page{max-width:680px}
       
