@@ -762,9 +762,47 @@
   <div class="page" id="page-cat-office"><div class="placeholder"><div class="icon">📋</div><h2>AI 办公</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-practice"><div class="placeholder"><div class="icon">⚙️</div><h2>AI 实践集</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-paint"><div class="placeholder"><div class="icon">🎨</div><h2>AI 绘画</h2><p>即将上线，敬请期待</p></div></div>
-  <div class="page" id="page-cat-poster"><div class="placeholder"><div class="icon">🖼️</div><h2>AI 海报</h2><p>即将上线，敬请期待</p></div></div>
+  <div class="page" id="page-cat-poster">
+    <div class="case-list">
+      <div class="section-label">精美海报</div>
+      <div class="sub-card-list">
+        <div class="sub-card-item" onclick="openPoster('poster-1')">
+          <img src="images/poster_1.jpg" alt="春节快乐" loading="lazy">
+          <div class="sub-card-body"><h4>春节快乐</h4><p>红红火火过大年，浓浓年味在心间。</p></div>
+        </div>
+        <div class="sub-card-item" onclick="openPoster('poster-2')">
+          <img src="images/poster_2.jpg" alt="非凡体验" loading="lazy">
+          <div class="sub-card-body"><h4>非凡体验</h4><p>挑战极限，感受非凡人生。</p></div>
+        </div>
+        <div class="sub-card-item" onclick="openPoster('poster-3')">
+          <img src="images/poster_3.jpg" alt="未来星社区" loading="lazy">
+          <div class="sub-card-body"><h4>未来星社区</h4><p>AI 赋能社区，温暖守护银发生活。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="page" id="page-cat-poem"><div class="placeholder"><div class="icon">📜</div><h2>诗词创作</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-about"><div class="placeholder"><div class="icon">✨</div><h2>关于乐活 AI</h2><p>用 AI 技术让老照片、旧记忆重获新生，探索 AI 创作的无限可能。</p></div></div>
+
+  <!-- 海报详情 -->
+  <div class="page" id="page-poster-1">
+    <div class="detail-header"><span class="back-btn" onclick="closePoster()">返回</span><h2>春节快乐</h2></div>
+    <div class="process-gallery">
+      <div class="process-item"><div class="process-label is-first">AI 生成 · 春节海报</div><div class="step-card"><img src="images/poster_1.jpg" alt="春节快乐" loading="lazy"><div class="step-info"><span class="tag">节日海报</span><h3>春节快乐</h3><p>红红火火过大年，浓浓年味在心间。</p></div></div></div>
+    </div>
+  </div>
+  <div class="page" id="page-poster-2">
+    <div class="detail-header"><span class="back-btn" onclick="closePoster()">返回</span><h2>非凡体验</h2></div>
+    <div class="process-gallery">
+      <div class="process-item"><div class="process-label is-first">AI 生成 · 活力海报</div><div class="step-card"><img src="images/poster_2.jpg" alt="非凡体验" loading="lazy"><div class="step-info"><span class="tag">运动海报</span><h3>非凡体验</h3><p>挑战极限，感受非凡人生。</p></div></div></div>
+    </div>
+  </div>
+  <div class="page" id="page-poster-3">
+    <div class="detail-header"><span class="back-btn" onclick="closePoster()">返回</span><h2>未来星社区</h2></div>
+    <div class="process-gallery">
+      <div class="process-item"><div class="process-label is-first">AI 生成 · 公益海报</div><div class="step-card"><img src="images/poster_3.jpg" alt="未来星社区" loading="lazy"><div class="step-info"><span class="tag">社区公益</span><h3>未来星社区</h3><p>AI 赋能社区，温暖守护银发生活。</p></div></div></div>
+    </div>
+  </div>
 
   <!-- 风格详情 -->
   <div class="page" id="page-style-1">
@@ -948,6 +986,18 @@
       window.scrollTo({top:0,behavior:'smooth'});
     }
     function goBackFromCard() { closeStyle(); }
+
+    function openPoster(id) {
+      Object.values(pages).forEach(p=>p.classList.remove('active'));
+      if (pages['page-'+id]) pages['page-'+id].classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function closePoster() {
+      subContainer.querySelectorAll('.nav-sub-item').forEach(t=>t.classList.remove('active'));
+      const first = subContainer.querySelector('.nav-sub-item');
+      if (first) first.classList.add('active');
+      switchPage('cat-poster');
+    }
 
     const observer = new IntersectionObserver(entries=>{
       entries.forEach(entry=>{if(entry.isIntersecting)entry.target.style.animationPlayState='running'});
