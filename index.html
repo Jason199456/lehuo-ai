@@ -704,15 +704,15 @@
     .thumb-grid{
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
+      gap:10px;
       padding-top:4px;
     }
     .thumb-item{
-      width:calc(33.33% - 8px);
+      width:calc(25% - 8px);
       border-radius:var(--radius-sm);
       overflow:hidden;
       cursor:pointer;
-      box-shadow:var(--shadow-sm);
+      box-shadow:0 1px 3px rgba(0,0,0,0.06);
       transition:all var(--transition);
       border:1px solid rgba(0,0,0,0.04);
       background:var(--card-bg);
@@ -728,19 +728,18 @@
     .thumb-item img{
       display:block;
       width:100%;
-      aspect-ratio:3/4;
-      object-fit:cover;
+      height:auto;
       background:linear-gradient(135deg,var(--bg-warm) 0%,var(--bg) 100%);
       transition:transform var(--transition-slow);
     }
     .thumb-item:hover img{
-      transform:scale(1.05);
+      transform:scale(1.04);
     }
     .thumb-item .thumb-label{
-      padding:6px 8px 8px;
-      font-size:11px;
+      padding:5px 6px 6px;
+      font-size:10px;
       font-weight:500;
-      color:var(--text-secondary);
+      color:var(--text-muted);
       text-align:center;
       white-space:nowrap;
       overflow:hidden;
@@ -748,11 +747,10 @@
     }
 
     @media(min-width:500px){
-      .thumb-item{width:calc(25% - 9px)}
+      .thumb-item{width:calc(20% - 8px)}
     }
     @media(min-width:768px){
-      .thumb-item{width:calc(20% - 10px)}
-      .thumb-item img{aspect-ratio:3/4}
+      .thumb-item{width:calc(16.66% - 9px)}
     }
   </style>
 </head>
