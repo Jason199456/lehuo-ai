@@ -699,6 +699,61 @@
         justify-content:center;
       }
     }
+
+    /* ===== 缩略图网格 ===== */
+    .thumb-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      padding-top:4px;
+    }
+    .thumb-item{
+      width:calc(33.33% - 8px);
+      border-radius:var(--radius-sm);
+      overflow:hidden;
+      cursor:pointer;
+      box-shadow:var(--shadow-sm);
+      transition:all var(--transition);
+      border:1px solid rgba(0,0,0,0.04);
+      background:var(--card-bg);
+      -webkit-tap-highlight-color:transparent;
+    }
+    .thumb-item:hover{
+      transform:translateY(-2px);
+      box-shadow:var(--shadow);
+    }
+    .thumb-item:active{
+      transform:scale(0.96);
+    }
+    .thumb-item img{
+      display:block;
+      width:100%;
+      aspect-ratio:3/4;
+      object-fit:cover;
+      background:linear-gradient(135deg,var(--bg-warm) 0%,var(--bg) 100%);
+      transition:transform var(--transition-slow);
+    }
+    .thumb-item:hover img{
+      transform:scale(1.05);
+    }
+    .thumb-item .thumb-label{
+      padding:6px 8px 8px;
+      font-size:11px;
+      font-weight:500;
+      color:var(--text-secondary);
+      text-align:center;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    @media(min-width:500px){
+      .thumb-item{width:calc(25% - 9px)}
+    }
+    @media(min-width:768px){
+      .thumb-item{width:calc(20% - 10px)}
+      .thumb-item img{aspect-ratio:3/4}
+    }
   </style>
 </head>
 <body>
@@ -781,10 +836,10 @@
   <div class="page" id="page-cat-paint">
     <div class="case-list">
       <div class="section-label">AI 绘画作品</div>
-      <div class="sub-card-list">
-        <div class="sub-card-item" onclick="openPaint('paint-1')">
+      <div class="thumb-grid">
+        <div class="thumb-item" onclick="openPaint('paint-1')">
           <img src="images/paint_1.jpg" alt="峡谷日落" loading="lazy">
-          <div class="sub-card-body"><h4>峡谷日落</h4><p>即梦AI生成 — 金色夕照下的峡谷瀑布，AI描绘大自然的壮丽。</p></div>
+          <div class="thumb-label">峡谷日落</div>
         </div>
       </div>
     </div>
@@ -792,18 +847,18 @@
   <div class="page" id="page-cat-poster">
     <div class="case-list">
       <div class="section-label">精美海报</div>
-      <div class="sub-card-list">
-        <div class="sub-card-item" onclick="openPoster('poster-2')">
+      <div class="thumb-grid">
+        <div class="thumb-item" onclick="openPoster('poster-2')">
           <img src="images/poster_2.jpg" alt="非凡体验" loading="lazy">
-          <div class="sub-card-body"><h4>非凡体验</h4><p>挑战极限，感受非凡人生。</p></div>
+          <div class="thumb-label">非凡体验</div>
         </div>
-        <div class="sub-card-item" onclick="openPoster('poster-3')">
+        <div class="thumb-item" onclick="openPoster('poster-3')">
           <img src="images/poster_3.jpg" alt="未来星社区" loading="lazy">
-          <div class="sub-card-body"><h4>未来星社区</h4><p>AI 赋能社区，温暖守护银发生活。</p></div>
+          <div class="thumb-label">未来星社区</div>
         </div>
-        <div class="sub-card-item" onclick="openPoster('poster-4')">
+        <div class="thumb-item" onclick="openPoster('poster-4')">
           <img src="images/poster_4.jpg" alt="不一样的我" loading="lazy">
-          <div class="sub-card-body"><h4>不一样的我</h4><p>头马演讲俱乐部，遇见不一样的自己。</p></div>
+          <div class="thumb-label">不一样的我</div>
         </div>
       </div>
     </div>
