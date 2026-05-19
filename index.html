@@ -778,7 +778,17 @@
 
   <div class="page" id="page-cat-office"><div class="placeholder"><div class="icon">📋</div><h2>AI 办公</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-practice"><div class="placeholder"><div class="icon">⚙️</div><h2>AI 实践集</h2><p>即将上线，敬请期待</p></div></div>
-  <div class="page" id="page-cat-paint"><div class="placeholder"><div class="icon">🎨</div><h2>AI 绘画</h2><p>即将上线，敬请期待</p></div></div>
+  <div class="page" id="page-cat-paint">
+    <div class="case-list">
+      <div class="section-label">AI 绘画作品</div>
+      <div class="sub-card-list">
+        <div class="sub-card-item" onclick="openPaint('paint-1')">
+          <img src="images/paint_1.jpg" alt="峡谷日落" loading="lazy">
+          <div class="sub-card-body"><h4>峡谷日落</h4><p>即梦AI生成 — 金色夕照下的峡谷瀑布，AI描绘大自然的壮丽。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="page" id="page-cat-poster">
     <div class="case-list">
       <div class="section-label">精美海报</div>
@@ -806,6 +816,14 @@
   </div>
   <div class="page" id="page-cat-poem"><div class="placeholder"><div class="icon">📜</div><h2>诗词创作</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-about"><div class="placeholder"><div class="icon">✨</div><h2>关于乐活 AI</h2><p>用 AI 技术让老照片、旧记忆重获新生，探索 AI 创作的无限可能。</p></div></div>
+
+  <!-- AI绘画详情 -->
+  <div class="page" id="page-paint-1">
+    <div class="detail-header"><span class="back-btn" onclick="closePaint()">返回</span><h2>峡谷日落</h2></div>
+    <div class="process-gallery">
+      <div class="process-item"><div class="process-label is-first">AI 生成 · 风光绘画</div><div class="step-card"><img src="images/paint_1.jpg" alt="峡谷日落" loading="lazy"><div class="step-info"><span class="tag">即梦AI</span><h3>峡谷日落</h3><p>金色夕照洒落峡谷，<br>瀑布飞流直下，<br>云雾缭绕山间。<br>AI 用画笔诠释了大自然的壮丽与宁静。</p></div></div></div>
+    </div>
+  </div>
 
   <!-- 海报详情 -->
   <div class="page" id="page-poster-2">
@@ -1014,6 +1032,18 @@
       const first = subContainer.querySelector('.nav-sub-item');
       if (first) first.classList.add('active');
       switchPage('cat-poster');
+    }
+
+    function openPaint(id) {
+      Object.values(pages).forEach(p=>p.classList.remove('active'));
+      if (pages['page-'+id]) pages['page-'+id].classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function closePaint() {
+      subContainer.querySelectorAll('.nav-sub-item').forEach(t=>t.classList.remove('active'));
+      const first = subContainer.querySelector('.nav-sub-item');
+      if (first) first.classList.add('active');
+      switchPage('cat-paint');
     }
 
     const observer = new IntersectionObserver(entries=>{
