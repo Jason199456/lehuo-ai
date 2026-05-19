@@ -662,6 +662,7 @@
       .nav-top-wrap{top:82px}
       .nav-sub-wrap{top:129px}
       .detail-nav{top:169px}
+      .detail-header{top:169px}
     }
 
     @media(min-width:768px){
@@ -702,13 +703,12 @@
 
     /* ===== 缩略图网格 ===== */
     .thumb-grid{
-      display:flex;
-      flex-wrap:wrap;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
       gap:10px;
       padding-top:4px;
     }
     .thumb-item{
-      width:calc(25% - 8px);
       border-radius:var(--radius-sm);
       overflow:hidden;
       cursor:pointer;
@@ -729,6 +729,7 @@
       display:block;
       width:100%;
       height:auto;
+      min-height:80px;
       background:linear-gradient(135deg,var(--bg-warm) 0%,var(--bg) 100%);
       transition:transform var(--transition-slow);
     }
@@ -747,10 +748,10 @@
     }
 
     @media(min-width:500px){
-      .thumb-item{width:calc(20% - 8px)}
+      .thumb-grid{grid-template-columns:repeat(5,1fr)}
     }
     @media(min-width:768px){
-      .thumb-item{width:calc(16.66% - 9px)}
+      .thumb-grid{grid-template-columns:repeat(6,1fr)}
     }
   </style>
 </head>
