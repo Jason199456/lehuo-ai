@@ -754,7 +754,42 @@
     @media(min-width:768px){
       .thumb-grid{grid-template-columns:repeat(6,1fr)}
     }
-  </style>
+  
+    /* ===== 诗词页面 ===== */
+    .poem-card{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      padding:28px 24px 32px;
+      margin-bottom:20px;
+      border-top:3px solid var(--accent);
+    }
+    .poem-card:last-child{margin-bottom:0}
+    .poem-title{
+      font-family:'Noto Serif SC',serif;
+      font-size:20px;
+      font-weight:700;
+      color:var(--accent-dark);
+      text-align:center;
+      margin-bottom:4px;
+    }
+    .poem-divider{
+      width:40px;height:1px;
+      background:var(--accent);
+      margin:10px auto 20px;
+      opacity:0.5;
+    }
+    .poem-body{
+      font-size:15px;
+      line-height:2;
+      color:var(--text);
+    }
+    .poem-body.centered{text-align:center}
+    .poem-body.left{text-align:left}
+    .poem-body .stanza{margin-bottom:12px}
+    .poem-body .stanza:last-child{margin-bottom:0}
+    .poem-body .indent{text-indent:0}
+</style>
 </head>
 <body>
   <header class="app-header"><picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" alt="乐活AI" class="app-logo"></picture><p>用创意点亮生活</p></header>
@@ -863,7 +898,39 @@
       </div>
     </div>
   </div>
-  <div class="page" id="page-cat-poem"><div class="placeholder"><div class="icon">📜</div><h2>诗词创作</h2><p>即将上线，敬请期待</p></div></div>
+  <div class="page" id="page-cat-poem">
+    <div class="case-list">
+      <div class="section-label">诗词创作</div>
+
+      <div class="poem-card">
+        <div class="poem-title">忆秦娥·观瀑</div>
+        <div class="poem-divider"></div>
+        <div class="poem-body centered">
+          <div class="stanza">霞光烈，<br>残阳铺水千山悦。<br>千山悦，<br>飞流直下，碎玉千叠。</div>
+          <div class="stanza">长河如带天际斜，<br>孤峰傲立尘嚣绝。<br>尘嚣绝，<br>斜阳一抹，壮怀难歇。</div>
+        </div>
+      </div>
+
+      <div class="poem-card">
+        <div class="poem-title">终南望日</div>
+        <div class="poem-divider"></div>
+        <div class="poem-body centered">
+          <div class="stanza">独攀绝顶立苍茫，云海翻腾接大荒。<br>心灯自照前行路，身经风霜志未央。</div>
+        </div>
+      </div>
+
+      <div class="poem-card">
+        <div class="poem-title">云在水面呼吸</div>
+        <div class="poem-divider"></div>
+        <div class="poem-body left">
+          <div class="stanza">云是被风揉软的棉<br>轻覆山尖，也轻覆<br>刚睡醒的黎明<br>雾漫过岸，漫过<br>树的影子<br>漫过我眼里，未说出口的软</div>
+          <div class="stanza">水抱着山，也抱着<br>天上的光<br>把整片天空，揉成了波浪</div>
+          <div class="stanza">风走得很慢<br>我也走得很慢<br>每一步，都踩在山谷的心跳上</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
   <div class="page" id="page-cat-about"><div class="placeholder"><div class="icon">✨</div><h2>关于乐活 AI</h2><p>探索 AI 创作的无限可能，用创意点亮生活。</p></div></div>
 
   <!-- AI绘画详情 -->
