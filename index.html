@@ -302,7 +302,8 @@
     .detail-header{
       display:flex;
       align-items:center;
-      gap:12px;
+      justify-content:center;
+      gap:0;
       padding:16px 0;
       position:sticky;
       top:201px;
@@ -324,6 +325,9 @@
       background:rgba(212,168,67,0.08);
       transition:all var(--transition);
       -webkit-tap-highlight-color:transparent;
+      position:absolute;
+      left:12px;
+      z-index:11;
     }
 
     .back-btn:hover{
@@ -341,13 +345,11 @@
     }
 
     .detail-header h2{
-      flex:1;
       text-align:center;
       font-family:'Noto Serif SC',serif;
       font-size:17px;
       font-weight:600;
       color:var(--text);
-      margin-right:48px;
     }
 
     .process-gallery{
@@ -811,8 +813,8 @@
       text-align:center;
       font-size:14px;
       color:var(--text-muted);
-      margin-top:6px;
-      margin-bottom:8px;
+      margin-top:2px;
+      margin-bottom:4px;
       font-family:'Noto Sans SC',sans-serif;
     }
 </style>
@@ -829,7 +831,7 @@
         <div class="nav-top-item" data-group="text">文字创作</div>
         <div class="nav-top-item" data-group="office">AI办公</div>
         <div class="nav-top-item" data-group="practice">AI实践集</div>
-        <div class="nav-top-item" data-group="more">更多</div>
+        <div class="nav-top-item" data-group="more">关于乐活 AI</div>
       </div>
     </div>
   </div>
@@ -1170,9 +1172,7 @@
       ]},
       office:  { label:'AI办公',   items:[],                             pageId:'cat-office' },
       practice:{ label:'AI实践集', items:[],                             pageId:'cat-practice' },
-      more:    { label:'更多',       items:[
-        {id:'cat-about', label:'关于'}
-      ]}
+      more:    { label:'关于乐活 AI', items:[],                             pageId:'cat-about' }
     };
     const pages = {};
     document.querySelectorAll('.page').forEach(p=>{pages[p.id]=p});
