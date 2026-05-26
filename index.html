@@ -1,16 +1,3 @@
-
-
-    function openPoem(id) {
-      Object.values(pages).forEach(p=>p.classList.remove('active'));
-      if (pages['page-'+id]) pages['page-'+id].classList.add('active');
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
-    function closePoem() {
-      subContainer.querySelectorAll('.nav-sub-item').forEach(t=>t.classList.remove('active'));
-      const first = subContainer.querySelector('.nav-sub-item');
-      if (first) first.classList.add('active');
-      switchPage('cat-poem');
-    }
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -1231,6 +1218,19 @@
       entries.forEach(entry=>{if(entry.isIntersecting)entry.target.style.animationPlayState='running'});
     },{threshold:.15});
     document.querySelectorAll('.process-item').forEach(el=>{el.style.animationPlayState='paused';observer.observe(el)});
+
+    function openPoem(id) {
+      Object.values(pages).forEach(p=>p.classList.remove('active'));
+      if (pages['page-'+id]) pages['page-'+id].classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function closePoem() {
+      subContainer.querySelectorAll('.nav-sub-item').forEach(t=>t.classList.remove('active'));
+      const first = subContainer.querySelector('.nav-sub-item');
+      if (first) first.classList.add('active');
+      switchPage('cat-poem');
+    }
+
   </script>
 </body>
 </html>
