@@ -847,6 +847,38 @@
       line-height:1.8;
       text-align:justify;
     }
+
+    /* 项目海报区域 */
+    .about-poster{
+      margin-top:32px;
+      padding-top:24px;
+      border-top:1px solid rgba(212,168,67,0.2);
+    }
+    .about-poster h3{
+      font-family:'Noto Serif SC',serif;
+      font-size:15px;
+      text-align:center;
+      margin-bottom:16px;
+      color:var(--text);
+    }
+    .poster-container{
+      max-width:400px;
+      margin:0 auto;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .poster-container img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .poster-caption{
+      text-align:center;
+      font-size:13px;
+      color:var(--text-secondary);
+      margin-top:12px;
+    }
 </style>
 </head>
 <body>
@@ -1099,6 +1131,15 @@
       <div class="about-section">
         <p>后续我们会根据大家的反馈，持续开展免费的线上、线下AI公益课程和活动，兼顾年轻人的趣味学习需求，更专注为长者提供贴心、实用的专属AI教学，让每一位社区居民都能轻松玩转AI，乐享智慧生活。</p>
       </div>
+    </div>
+
+    <!-- 项目海报 -->
+    <div class="about-poster">
+      <h3>活动海报</h3>
+      <div class="poster-container">
+        <picture><source srcset="images/poster_about.webp" type="image/webp"><img src="images/poster_about.jpg" alt="AI乐活公益活动海报" loading="lazy"></picture>
+      </div>
+      <p class="poster-caption">扫码入群获取活动信息，或填写问卷告诉我们您的需求</p>
     </div>
   </div>
 
