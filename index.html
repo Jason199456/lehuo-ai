@@ -726,6 +726,11 @@
       background:var(--card-bg);
       -webkit-tap-highlight-color:transparent;
     }
+    .thumb-item picture{
+      display:block;
+      aspect-ratio:3/4;
+      overflow:hidden;
+    }
     .thumb-item:hover{
       transform:translateY(-2px);
       box-shadow:var(--shadow);
@@ -736,7 +741,8 @@
     .thumb-item img{
       display:block;
       width:100%;
-      height:auto;
+      height:100%;
+      object-fit:cover;
       min-height:80px;
       background:linear-gradient(135deg,var(--bg-warm) 0%,var(--bg) 100%);
       transition:transform var(--transition-slow);
@@ -1058,7 +1064,7 @@
   <div class="page" id="page-cat-practice"><div class="placeholder"><div class="icon">⚙️</div><h2>AI 实践集</h2><p>即将上线，敬请期待</p></div></div>
   <div class="page" id="page-cat-paint">
     <div class="case-list">
-      <div class="section-label">AI 绘画作品</div>
+      <div class="section-label">AI 风景作品</div>
       <div class="thumb-grid">
         <div class="thumb-item" onclick="openPaint('paint-1')">
           <picture><source srcset="images/paint_1.webp" type="image/webp"><img src="images/paint_1.jpg" alt="峡谷日落" loading="lazy"></picture>
@@ -1381,7 +1387,7 @@
     const groups = {
       visual:  { label:'影像创作', items:[
         {id:'cat-photo', label:'老照片修复'},
-        {id:'cat-paint', label:'AI 绘画'},
+        {id:'cat-paint', label:'AI 风景'},
         {id:'cat-poster', label:'AI 海报'}
       ]},
       text:    { label:'文字创作', items:[
