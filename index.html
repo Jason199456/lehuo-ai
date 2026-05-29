@@ -917,6 +917,25 @@
       margin-top:14px;
       line-height:1.6;
     }
+    /* AI分享二维码 — 宽度与海报一致 */
+    .about-share-qr{
+      margin-top:24px;
+    }
+    .qr-container{
+      max-width:400px;
+      margin:0 auto;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .qr-container img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+      margin-top:14px;
+      line-height:1.6;
+    }
 </style>
 </head>
 <body>
@@ -1186,6 +1205,13 @@
         <picture><source srcset="images/poster_about.webp" type="image/webp"><img src="images/poster_about.jpg" alt="AI乐活公益" loading="lazy"></picture>
       </div>
       <p class="poster-caption">扫码入群获取活动信息，或填写问卷告诉我们您的需求</p>
+    </div>
+
+    <!-- AI分享二维码 -->
+    <div class="about-share-qr">
+      <div class="qr-container">
+        <img src="images/ai_share_qr.jpg" alt="AI乐活分享" loading="lazy">
+      </div>
     </div>
   </div>
 
