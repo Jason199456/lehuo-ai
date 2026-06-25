@@ -946,6 +946,59 @@
       margin-top:14px;
       line-height:1.6;
     }
+
+    /* ===== AI办公文章展示区 ===== */
+    .article-content{padding:20px 18px}
+    .article-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    .article-body p{
+      font-size:14px;
+      color:var(--text-secondary);
+      line-height:1.85;
+      margin-bottom:14px;
+      text-align:justify;
+    }
+    .article-body blockquote{
+      border-left:3px solid var(--accent);
+      margin:14px 0;
+      padding:8px 14px;
+      background:rgba(212,168,67,0.06);
+      border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+      font-size:13px;
+      color:var(--text-muted);
+      line-height:1.7;
+    }
+    .article-body .highlight-box{
+      background:rgba(212,168,67,0.08);
+      border-radius:var(--radius-sm);
+      padding:14px 16px;
+      margin:14px 0;
+      font-size:13px;
+      color:var(--text-secondary);
+      line-height:1.7;
+    }
+    .article-body .highlight-box strong{color:var(--accent-dark)}
+    .article-link-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:14px;
+      font-weight:600;
+      color:#fff;
+      background:var(--accent-gradient);
+      padding:10px 24px;
+      border-radius:var(--radius-full);
+      text-decoration:none;
+      transition:all var(--transition);
+      box-shadow:var(--shadow-accent);
+    }
+    .article-link-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:var(--shadow-lg);
+      color:#fff;
+    }
+    .article-link-btn:active{
+      transform:scale(0.97);
+    }
 </style>
 </head>
 <body>
@@ -1040,6 +1093,13 @@
           <div class="style-card-arrow">&#8250;</div>
         </div>
       </div>
+      <div class="style-card" id="office-case-3" onclick="openOffice('office-3')">
+        <div class="style-card-inner">
+          <div class="style-card-icon" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);color:#e65100">推</div>
+          <div class="style-card-info"><h3>AI 写 VBA 做 Excel 自动整理</h3><div class="style-desc">微信推文 · 30 分钟→10 秒的 AI 办公实战</div></div>
+          <div class="style-card-arrow">&#8250;</div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- AI办公详情 -->
@@ -1059,6 +1119,34 @@
         <picture><source srcset="images/office_2.webp" type="image/webp"><img src="images/office_2.jpg" alt="Excel VBA自动化" loading="lazy"></picture>
         <div class="step-info"><span class="tag">AI 编写代码</span><h3>10 秒完成 30 分钟工作</h3><p>2025 年有一个同事，他要做一个常规的任务，把三张 Excel 表进行数据整理清洗，他每次都要花上三十分钟找我帮忙，我利用 AI 写成 VBA 代码，运行 10 秒钟即可完成。</p></div>
       </div></div>
+    </div>
+  </div>
+  <div class="page" id="page-office-3">
+    <div class="detail-header"><span class="back-btn" onclick="closeOffice()">返回</span><h2>AI 写 VBA · Excel 自动整理</h2></div>
+    <div class="process-gallery">
+      <div class="process-item">
+        <div class="process-label is-first">文章 · AI 写 VBA 做 Excel 自动整理</div>
+        <div class="step-card">
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="tag">微信公众号</span>
+              <span style="font-size:12px;color:var(--text-muted)">一步 AI悦活 · 2026.06.12</span>
+            </div>
+            <h3 style="margin:12px 0 10px;font-family:'Noto Serif SC',serif;font-size:17px;color:var(--text);line-height:1.4">同事做表 30 分钟，我用 AI 帮他缩到 10 秒，他当场愣住了</h3>
+            <div class="article-body">
+              <p>一位同事每月都要处理三四个 Excel 文件的跨表数据筛选、匹配，每次要花 30 多分钟，还经常对不上。作者没有自己写 VBA，而是用自然语言描述业务逻辑，让 AI（Deepseek、Kimi）生成 VBA 宏代码，运行 10 秒钟就完成了全部工作。</p>
+              <blockquote>当你不会写代码，但能把自己的业务逻辑说清楚——这就够了。AI 负责翻译，你负责验收。这才是普通人能用起来的"效率工具"。</blockquote>
+              <div class="highlight-box">
+                <strong>核心思路：</strong>复杂逻辑拆成两个小模块——① 先清洗、匹配数据；② 再做逻辑判断输出结果。用清晰的自然语言写提示词，AI 就能生成可直接运行的 VBA 代码。
+              </div>
+              <p><strong>2025 年</strong>还需要多次试错调整提示词才能拿到可用代码；而到了 <strong>2026 年</strong>，AI 一次生成的代码就能直接跑通。AI 的进步非常快。</p>
+            </div>
+            <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px solid rgba(212,168,67,0.2)">
+              <a href="https://mp.weixin.qq.com/s/cJa-jCosIcjzMxDC1A3XHg" target="_blank" rel="noopener" class="article-link-btn">阅读完整推文 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="page" id="page-cat-practice"><div class="placeholder"><div class="icon">⚙️</div><h2>AI 实践集</h2><p>即将上线，敬请期待</p></div></div>
