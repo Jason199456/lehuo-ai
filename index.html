@@ -946,7 +946,6 @@
       margin-top:14px;
       line-height:1.6;
     }
-
 </style>
 </head>
 <body>
@@ -961,7 +960,7 @@
         <div class="nav-top-item" data-group="text">文字创作</div>
         <div class="nav-top-item" data-group="office">AI办公</div>
         <div class="nav-top-item" data-group="practice">AI实践集</div>
-        <div class="nav-top-item" data-group="more">lehuo-ai</div>
+        <div class="nav-top-item" data-group="more">关于乐活 AI</div>
       </div>
     </div>
   </div>
@@ -1034,6 +1033,13 @@
           <div class="style-card-arrow">&#8250;</div>
         </div>
       </div>
+      <div class="style-card" id="office-case-2" onclick="openOffice('office-2')">
+        <div class="style-card-inner">
+          <div class="style-card-icon" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:#2e7d32">VBA</div>
+          <div class="style-card-info"><h3>三张 Excel 表自动整理</h3><div class="style-desc">AI 写 VBA 代码，10 秒完成 30 分钟工作量</div></div>
+          <div class="style-card-arrow">&#8250;</div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- AI办公详情 -->
@@ -1043,6 +1049,15 @@
       <div class="process-item"><div class="process-label is-first">AI 解决 Excel 公式难题</div><div class="step-card">
         <picture><source srcset="images/office_1.webp" type="image/webp"><img src="images/office_1.jpg" alt="Excel公式修复" loading="lazy"></picture>
         <div class="step-info"><span class="tag">AI 辅助</span><h3>一分钟精准修复</h3><p>2024 年，有一个同事写了一个非常长的复杂的 Excel 公式，但是有点小问题，自己研究了一个星期没有做好。他来找我帮忙，我把它放到了 AI 里边，让 AI 去找出问题并进行修改。AI 很快就给出了答案，并一次性就改成功了。</p></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="page" id="page-office-2">
+    <div class="detail-header"><span class="back-btn" onclick="closeOffice()">返回</span></div>
+    <div class="process-gallery">
+      <div class="process-item"><div class="process-label is-first">AI 编写 VBA 自动化脚本</div><div class="step-card">
+        <picture><source srcset="images/office_2.webp" type="image/webp"><img src="images/office_2.jpg" alt="Excel VBA自动化" loading="lazy"></picture>
+        <div class="step-info"><span class="tag">AI 编写代码</span><h3>10 秒完成 30 分钟工作</h3><p>2025 年有一个同事，他要做一个常规的任务，把三张 Excel 表进行数据整理清洗，他每次都要花上三十分钟找我帮忙，我利用 AI 写成 VBA 代码，运行 10 秒钟即可完成。</p></div>
       </div></div>
     </div>
   </div>
@@ -1445,7 +1460,7 @@
       ]},
       office:  { label:'AI办公',   items:[],                             pageId:'cat-office' },
       practice:{ label:'AI实践集', items:[],                             pageId:'cat-practice' },
-      more:    { label:'lehuo-ai', items:[],                             pageId:'cat-about' }
+      more:    { label:'关于乐活 AI', items:[],                             pageId:'cat-about' }
     };
     const pages = {};
     document.querySelectorAll('.page').forEach(p=>{pages[p.id]=p});
